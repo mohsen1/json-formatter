@@ -390,13 +390,29 @@ module.exports = function (grunt) {
       lib: {
         src: [
           '<%= yeoman.app %>/scripts/factories/recursion-helper.js',
+          '.tmp/json-formatter-html.js',
           '<%= yeoman.app %>/scripts/directives/jsonformatter.js'
         ],
         dest: 'lib/json-formatter.js'
+      },
+      serve: {
+        src: [
+          '.tmp/json-formatter-html.js',
+          '<%= yeoman.app %>/scripts/directives/jsonformatter.js'
+        ],
+        dest: '<%= yeoman.app %>/scripts/directives/json-formatter-with-html.js'
       }
     },
-
-
+    htmlConvert: {
+      options: {
+        base: 'app/templates/',
+        module: '__json_formatter_templates__'
+      },
+      jsonFormatter: {
+        src: ['<%= yeoman.app %>/templates/json-formatter.html'],
+        dest: '.tmp/json-formatter-html.js'
+      },
+    }
   });
 
 
@@ -410,6 +426,8 @@ module.exports = function (grunt) {
       'bowerInstall',
       'concurrent:server',
       'autoprefixer',
+      'htmlConvert:jsonFormatter',
+      'concat:serve',
       'connect:livereload',
       'watch'
     ]);
@@ -435,6 +453,8 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
+    'htmlConvert:jsonFormatter',
+    'concat:serve',
     'ngmin',
     'copy:dist',
     'cdnify',
@@ -453,6 +473,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('lib', [
     'clean:lib',
+    'htmlConvert:jsonFormatter',
     'bowerInstall',
     'concat:lib',
     'compass:lib'
