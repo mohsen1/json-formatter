@@ -282,6 +282,11 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.dist %>',
           src: ['*.html', 'views/{,*/}*.html'],
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          src: 'templates/*.html',
+          dest: '<%= yeoman.dist %>/templates'
         }]
       }
     },
@@ -412,6 +417,12 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/templates/json-formatter.html'],
         dest: '.tmp/json-formatter-html.js'
       },
+    },
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: ['**']
     }
   });
 
@@ -452,9 +463,9 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'concat',
     'htmlConvert:jsonFormatter',
     'concat:serve',
+    'concat',
     'ngmin',
     'copy:dist',
     'cdnify',
