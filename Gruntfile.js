@@ -125,6 +125,13 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      lib: {
+        files: [{
+          src: [
+            'lib'
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -175,6 +182,13 @@ module.exports = function (grunt) {
       dist: {
         options: {
           generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+        }
+      },
+      lib: {
+        options: {
+          sassDir: '<%= yeoman.app %>/styles/json-formatter',
+          cssDir: 'lib',
+          noLineComments: true
         }
       },
       server: {
@@ -371,7 +385,18 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
-    }
+    },
+    concat: {
+      lib: {
+        src: [
+          '<%= yeoman.app %>/scripts/factories/recursion-helper.js',
+          '<%= yeoman.app %>/scripts/directives/jsonformatter.js'
+        ],
+        dest: 'lib/json-formatter.js'
+      }
+    },
+
+
   });
 
 
@@ -424,5 +449,12 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('lib', [
+    'clean:lib',
+    'bowerInstall',
+    'concat:lib',
+    'compass:lib'
   ]);
 };

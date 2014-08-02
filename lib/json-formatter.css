@@ -1,0 +1,56 @@
+@charset "UTF-8";
+.json-formatter-row {
+  font-family: monospace;
+}
+.json-formatter-row .json-formatter-row {
+  margin-left: 1em;
+}
+.json-formatter-row .children.empty {
+  opacity: 0.5;
+  margin-left: 1em;
+}
+.json-formatter-row .children.empty.object:after {
+  content: "No properties";
+}
+.json-formatter-row .children.empty.array:after {
+  content: "[]";
+}
+.json-formatter-row .string {
+  color: green;
+  white-space: pre;
+  word-wrap: break-word;
+}
+.json-formatter-row .number {
+  color: blue;
+}
+.json-formatter-row .boolean {
+  color: red;
+}
+.json-formatter-row .null {
+  color: #855a00;
+}
+.json-formatter-row .bracket {
+  color: blue;
+}
+.json-formatter-row .key {
+  color: darkblue;
+  cursor: pointer;
+}
+.json-formatter-row .constructor-name {
+  cursor: pointer;
+}
+.json-formatter-row .toggler {
+  font-size: 0.8em;
+  line-height: 1.2em;
+  vertical-align: middle;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.json-formatter-row .toggler:after {
+  display: inline-block;
+  transition: transform 100ms ease-in;
+  content: "►";
+}
+.json-formatter-row .toggler.open:after {
+  transform: rotate(90deg);
+}
