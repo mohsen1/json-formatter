@@ -1,0 +1,18 @@
+.tests {
+  &, h1, h2, h3 {
+    font-family: sans-serif;
+  }
+
+  h2 {
+    margin: .5em 0 .2em;
+    padding: 0;
+  }
+
+  .group {
+    padding: 1em;
+  }
+  .result {
+    padding: 1em;
+    border: 1px solid #eee;
+  }
+}
