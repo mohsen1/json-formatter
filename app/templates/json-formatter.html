@@ -1,5 +1,5 @@
-<div ng-init="isOpen = false" class="json-formatter-row">
-  <a ng-click="isOpen = !isOpen">
+<div ng-init="isOpen = open && open > 0" class="json-formatter-row">
+  <a ng-click="toggleOpen()">
     <span class="toggler {{isOpen ? 'open' : ''}}" ng-if="isObject"></span>
     <span class="key" ng-if="hasKey">{{key}}:</span>
     <span class="value">
@@ -12,7 +12,7 @@
     </span>
   </a>
   <div class="children" ng-if="keys.length && isOpen">
-    <json-formatter ng-repeat="key in keys" json="json[key]" key="key" open="open - 1"></json-formatter>
+    <json-formatter ng-repeat="key in keys" json="json[key]" key="key" open="childrenOpen()"></json-formatter>
   </div>
   <div class="children empty object" ng-if="isEmptyObject()"></div>
   <div class="children empty array" ng-if="keys && !keys.length && isOpen && isArray()"></div>
