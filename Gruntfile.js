@@ -406,6 +406,12 @@ module.exports = function (grunt) {
         ],
         dest: 'lib/json-formatter.js'
       }
+    },
+
+    shell: {
+      'update-gh-pages-branch': {
+        command: 'sh update-gh-pages-branch.sh'
+      }
     }
   });
 
@@ -473,7 +479,8 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'shell:update-gh-pages-branch'
   ]);
 
   grunt.registerTask('default', [
