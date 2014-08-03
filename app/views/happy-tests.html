@@ -1,0 +1,120 @@
+<div class="tests">
+  <h1>Basic Happy Tests</h1>
+  <div class="group">
+    <h2>Empty</h2>
+    <div class="result">
+      <json-formatter json=''></json-formatter>
+    </div>
+
+    <h2>Null</h2>
+    <div class="result">
+      <json-formatter json='null'></json-formatter>
+    </div>
+
+    <h2>Number</h2>
+    <div class="result">
+      <json-formatter json='42'></json-formatter>
+    </div>
+
+    <h2>String</h2>
+    <div class="result">
+      <json-formatter json='"Hello world!"'></json-formatter>
+    </div>
+
+    <h2>Empty object</h2>
+    <div class="result">
+      <json-formatter json="{}"></json-formatter>
+    </div>
+
+    <h2>Empty array</h2>
+    <div class="result">
+      <json-formatter json="[]"></json-formatter>
+    </div>
+
+    <h2>Object with one key</h2>
+    <div class="result">
+      <json-formatter json="{me: 1}"></json-formatter>
+    </div>
+
+    <h2>Nested Object</h2>
+    <div class="result">
+      <json-formatter json="{me: {you: 2}}"></json-formatter>
+    </div>
+
+    <h2>Array</h2>
+    <div class="result">
+      <json-formatter json="['one', 'two', 'three']"></json-formatter>
+    </div>
+
+    <h2>Complex Object</h2>
+    <div class="result">
+      <json-formatter json='{
+      "array": [
+        1,
+        2,
+        3
+      ],
+      "boolean": true,
+      "null": null,
+      "number": 123,
+      "object": {
+        "a": "b",
+        "c": "d",
+        "e": "f\""
+      },
+      "string": "Hello World"
+    }'></json-formatter>
+  </div>
+
+    <h2>Object with long key</h2>
+    <div class="result">
+      <json-formatter json ='{
+      "a_very_llllllllllllllllllllllllllllllllong_key": {m3:1},
+    }
+    '></json-formatter>
+  </div>
+
+    <h2>Long String content</h2>
+    <div class="result">
+      <json-formatter json='{
+    "long": "Slow-carb hella vegan, Bushwick flexitarian Portland roof party photo booth forage. Fixie try-hard gastropub Etsy single-origin coffee bitters. Crucifix sartorial squid, bitters chillwave before they sold out farm-to-table mustache direct trade \ndeep v bicycle rights Austin bespoke. Odd Future sriracha Thundercats whatever pork belly Marfa, mumblecore gluten-free dreamcatcher. Dreamcatcher next level polaroid mustache fap gentrify typewriter. PBR Shoreditch cred, pug narwhal slow-carb seitan. Bushwick +1 banjo, chia flexitarian keytar retro PBR&B cred."
+    }'></json-formatter>
+  </div>
+
+    <h2>HTML content</h2>
+    <div class="result">
+      <json-formatter json='{html: "<h1>H1 Heading</h1>"}'></json-formatter>
+    </div>
+
+    <h2>Opened 1 level</h2>
+    <div class="result">
+      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="1"></json-formatter>
+    </div>
+    <h2>Opened 2 level</h2>
+    <div class="result">
+      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="2"></json-formatter>
+    </div>
+    <h2>Opened 3 level</h2>
+    <div class="result">
+      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="3"></json-formatter>
+    </div>
+    <h2>Opened 4 level</h2>
+    <div class="result">
+      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="4"></json-formatter>
+    </div>
+
+<!-- Templates -->
+<!--     <h2></h2>
+    <div class="result">
+      <json-formatter json=''></json-formatter>
+    </div>
+    <h2></h2>
+    <div class="result">
+      <json-formatter json=''></json-formatter>
+    </div>
+    <h2></h2>
+    <div class="result">
+      <json-formatter json=''></json-formatter>
+    </div> -->
+  </div>
+</div>

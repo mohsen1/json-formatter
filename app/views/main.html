@@ -1,72 +1,86 @@
-<div class="tests">
-  <h1>Basic Happy Tests</h1>
-  <div class="group">
-    <h2>Empty</h2>
-    <div class="result">
-      <json-formatter json=''></json-formatter>
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="https://github.com/mohsen1/json-formatter">Code in GitHub</a></li>
+  </ul>
+  <h3 class="text-muted">&lt;json-formatter&gt;</h3>
+</div>
+
+<div class="row marketing">
+  <h4>About</h4>
+  <p>
+    JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with a collapsible navigation.
+  </p>
+  <h4>How to use</h4>
+  <p>Install via Bower<p>
+  <p><code>bower install json-formatter --save</code></p>
+  <p>Add <code>jsonFormatter</code> to your app dependencies</p>
+  <p>
+    <pre>
+angular
+  .module('jsonFormatterApp', [
+    'ngCookies',
+    ...
+    'jsonFormatter'
+  ])
+    </pre>
+  </p>
+  <p>Use <code>&lt;json-formatter&gt;</code> directive</p>
+  <p>
+<pre>
+&lt;json-formatter json="{my: 'json'}"&gt;&lt;/json-formatter&gt;
+</pre>
+  </p>
+
+  <h4>Examples</h4>
+  <div class="tests">
+    <div class="group">
+
+      <h6>Null</h6>
+      <div class="result">
+        <json-formatter json='null'></json-formatter>
+      </div>
+
+      <h6>Number</h6>
+      <div class="result">
+        <json-formatter json='42'></json-formatter>
+      </div>
+
+      <h6>String</h6>
+      <div class="result">
+        <json-formatter json='"Hello world!"'></json-formatter>
+      </div>
+
+      <h6>Empty object</h6>
+      <div class="result">
+        <json-formatter json="{}"></json-formatter>
+      </div>
+
+      <h6>Empty array</h6>
+      <div class="result">
+        <json-formatter json="[]"></json-formatter>
+      </div>
+
+      <h6>Object with one key</h6>
+      <div class="result">
+        <json-formatter json="{me: 1}"></json-formatter>
+      </div>
+
+      <h6>Nested Object</h6>
+      <div class="result">
+        <json-formatter json="{me: {you: 2}}"></json-formatter>
+      </div>
+
+      <h6>Array</h6>
+      <div class="result">
+        <json-formatter json="['one', 'two', 'three']"></json-formatter>
+      </div>
+
+      <h6>Complex Object</h6>
+      <div class="result">
+        <json-formatter json='complex'></json-formatter>
     </div>
 
-    <h2>Null</h2>
-    <div class="result">
-      <json-formatter json='null'></json-formatter>
-    </div>
-
-    <h2>Number</h2>
-    <div class="result">
-      <json-formatter json='42'></json-formatter>
-    </div>
-
-    <h2>String</h2>
-    <div class="result">
-      <json-formatter json='"Hello world!"'></json-formatter>
-    </div>
-
-    <h2>Empty object</h2>
-    <div class="result">
-      <json-formatter json="{}"></json-formatter>
-    </div>
-
-    <h2>Empty array</h2>
-    <div class="result">
-      <json-formatter json="[]"></json-formatter>
-    </div>
-
-    <h2>Object with one key</h2>
-    <div class="result">
-      <json-formatter json="{me: 1}"></json-formatter>
-    </div>
-
-    <h2>Nested Object</h2>
-    <div class="result">
-      <json-formatter json="{me: {you: 2}}"></json-formatter>
-    </div>
-
-    <h2>Array</h2>
-    <div class="result">
-      <json-formatter json="['one', 'two', 'three']"></json-formatter>
-    </div>
-
-    <h2>Complex Object</h2>
-    <div class="result">
-      <json-formatter json='{
-      "array": [
-        1,
-        2,
-        3
-      ],
-      "boolean": true,
-      "null": null,
-      "number": 123,
-      "object": {
-        "a": "b",
-        "c": "d",
-        "e": "f\""
-      },
-      "string": "Hello World"
-    }'></json-formatter>
-  </div>
-
-    <h2>Object with long key</h2>
+    <h6>Object with long key</h6>
     <div class="result">
       <json-formatter json ='{
       "a_very_llllllllllllllllllllllllllllllllong_key": {m3:1},
@@ -74,47 +88,37 @@
     '></json-formatter>
   </div>
 
-    <h2>Long String content</h2>
+    <h6>Long String content</h6>
     <div class="result">
       <json-formatter json='{
-    "long": "Slow-carb hella vegan, Bushwick flexitarian Portland roof party photo booth forage. Fixie try-hard gastropub Etsy single-origin coffee bitters. Crucifix sartorial squid, bitters chillwave before they sold out farm-to-table mustache direct trade \ndeep v bicycle rights Austin bespoke. Odd Future sriracha Thundercats whatever pork belly Marfa, mumblecore gluten-free dreamcatcher. Dreamcatcher next level polaroid mustache fap gentrify typewriter. PBR Shoreditch cred, pug narwhal slow-carb seitan. Bushwick +1 banjo, chia flexitarian keytar retro PBR&B cred."
+      "long": "Slow-carb hella vegan, Bushwick flexitarian Portland roof party photo booth forage. Fixie try-hard gastropub Etsy single-origin coffee bitters. Crucifix sartorial squid, bitters chillwave before they sold out farm-to-table mustache direct trade \ndeep v bicycle rights Austin bespoke. Odd Future sriracha Thundercats whatever pork belly Marfa, mumblecore gluten-free dreamcatcher. Dreamcatcher next level polaroid mustache fap gentrify typewriter. PBR Shoreditch cred, pug narwhal slow-carb seitan. Bushwick +1 banjo, chia flexitarian keytar retro PBR&B cred."
     }'></json-formatter>
-  </div>
+    </div>
 
-    <h2>HTML content</h2>
+    <h6>HTML content</h6>
     <div class="result">
       <json-formatter json='{html: "<h1>H1 Heading</h1>"}'></json-formatter>
     </div>
 
-    <h2>Opened 1 level</h2>
+    <h6>Opened 1 level</h6>
     <div class="result">
-      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="1"></json-formatter>
+      <json-formatter json='deep' open="1"></json-formatter>
     </div>
-    <h2>Opened 2 level</h2>
+    <h6>Opened 2 level</h6>
     <div class="result">
-      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="2"></json-formatter>
+      <json-formatter json='deep' open="2"></json-formatter>
     </div>
-    <h2>Opened 3 level</h2>
+    <h6>Opened 3 level</h6>
     <div class="result">
-      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="3"></json-formatter>
+      <json-formatter json='deep' open="3"></json-formatter>
     </div>
-    <h2>Opened 4 level</h2>
+    <h6>Opened 4 level</h6>
     <div class="result">
-      <json-formatter json='{a:{b:{c:{d:{}}}}}' open="4"></json-formatter>
+      <json-formatter json='deep' open="4"></json-formatter>
     </div>
-
-<!-- Templates -->
-<!--     <h2></h2>
-    <div class="result">
-      <json-formatter json=''></json-formatter>
-    </div>
-    <h2></h2>
-    <div class="result">
-      <json-formatter json=''></json-formatter>
-    </div>
-    <h2></h2>
-    <div class="result">
-      <json-formatter json=''></json-formatter>
-    </div> -->
   </div>
+</div>
+</div>
+<div class="footer">
+  <p>License Apache 2</p>
 </div>
