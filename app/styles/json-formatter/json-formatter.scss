@@ -9,6 +9,7 @@
   $toggler-color: #45376F;
   $bracket-color: blue;
   $key-color: #00008B;
+  $url-color: blue;
 
   font-family: monospace;
   &, a, a:hover {
@@ -39,6 +40,12 @@
   .number { color: $number-color; }
   .boolean { color: $boolean-color; }
   .null { color: $null-color; }
+  .date { background-color: rgba($default-color, 0.05); }
+  .url {
+    text-decoration: underline;
+    color: $url-color;
+    cursor: pointer;
+  }
 
   .bracket { color: $bracket-color; }
   .key {

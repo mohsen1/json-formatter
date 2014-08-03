@@ -15,9 +15,23 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     scope.type = typeof scope.json;
     scope.hasKey = typeof scope.key !== 'undefined';
     scope.constructorName = scope.json && scope.json.constructor && scope.json.constructor.name;
+
     // Set custom type for null
     if (scope.json === null){
       scope.type = 'null';
+    }
+
+    if (scope.type === 'string'){
+
+      // Add custom type for date
+      if((new Date(scope.json)).toString() !== 'Invalid Date') {
+        scope.isDate = true;
+      }
+
+      // Add custom type for URLs
+      if (scope.json.indexOf('http') === 0) {
+        scope.isUrl = true;
+      }
     }
 
     scope.escapeString = function (str) {
@@ -40,6 +54,12 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
       }
       return 0;
     };
+
+    scope.openLink = function (isUrl) {
+      if(isUrl) {
+        window.location.href = scope.json;
+      }
+    };
   }
 
   return {
@@ -53,7 +73,9 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     '        <span ng-if="isArray()"><span class="bracket">[</span><span class="number">{{json.length}}</span><span class="bracket">]</span></span>\n' +
     '      </span>\n' +
     '      <span ng-if="!isObject && type !== \'string\'" class="{{type}}">{{type === \'null\' ? \'null\' : json}}</span>\n' +
-    '      <span ng-if="!isObject && type === \'string\'" class="{{type}}">"{{escapeString(json)}}"</span>\n' +
+    '      <span ng-if="!isObject && type === \'string\'" class="{{type}}" \n' +
+    '        ng-class="{date: isDate, url: isUrl}"\n' +
+    '        ng-click="openLink(isUrl)">"{{escapeString(json)}}"</span>\n' +
     '    </span>\n' +
     '  </a>\n' +
     '  <div class="children" ng-if="keys.length && isOpen">\n' +
