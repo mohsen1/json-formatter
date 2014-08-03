@@ -433,6 +433,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'lib',
       'clean:server',
       'bowerInstall',
       'template-js',
