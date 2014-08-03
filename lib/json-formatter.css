@@ -34,7 +34,12 @@
   color: #855a00;
 }
 .json-formatter-row .date {
-  color: gold;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.json-formatter-row .url {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
 }
 .json-formatter-row .bracket {
   color: blue;

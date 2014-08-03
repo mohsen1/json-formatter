@@ -495,5 +495,5 @@ module.exports = function (grunt) {
     'compass:lib'
   ]);
 
-  grunt.registerTask('ship', ['build', 'lib', 'shell:update-gh-pages-branch'])
+  grunt.registerTask('ship', ['build', 'lib', 'shell:update-gh-pages-branch']);
 };
