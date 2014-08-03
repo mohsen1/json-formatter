@@ -11,14 +11,14 @@
   $key-color: #00008B;
 
   font-family: monospace;
+  &, a, a:hover {
+    color: $default-color;
+    text-decoration: none;
+  }
 
   .json-formatter-row {
     margin-left: 1em;
-    color: $default-color;
 
-    &, &:hover {
-      text-decoration: none;
-    }
   }
 
   .children {
