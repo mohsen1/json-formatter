@@ -1,6 +1,6 @@
 {
   "name": "json-formatter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": [
     "lib/json-formatter.js",
     "lib/json-formatter.css"
@@ -22,8 +22,7 @@
     "JSON"
   ],
   "license": "Apache 2.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "angular": "1.2.15",
     "json3": "~3.2.6",
