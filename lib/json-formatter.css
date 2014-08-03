@@ -2,12 +2,12 @@
 .json-formatter-row {
   font-family: monospace;
 }
+.json-formatter-row, .json-formatter-row a, .json-formatter-row a:hover {
+  color: black;
+  text-decoration: none;
+}
 .json-formatter-row .json-formatter-row {
   margin-left: 1em;
-  color: black;
-}
-.json-formatter-row .json-formatter-row, .json-formatter-row .json-formatter-row:hover {
-  text-decoration: none;
 }
 .json-formatter-row .children.empty {
   opacity: 0.5;
