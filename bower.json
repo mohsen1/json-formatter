@@ -1,6 +1,6 @@
 {
   "name": "json-formatter",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": [
     "lib/json-formatter.js",
     "lib/json-formatter.css"
