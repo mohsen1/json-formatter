@@ -406,12 +406,6 @@ module.exports = function (grunt) {
         ],
         dest: 'lib/json-formatter.js'
       }
-    },
-    'gh-pages': {
-      options: {
-        base: 'dist'
-      },
-      src: ['**']
     }
   });
 
