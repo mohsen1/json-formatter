@@ -402,36 +402,10 @@ module.exports = function (grunt) {
         },
         src: [
           '<%= yeoman.app %>/scripts/factories/recursion-helper.js',
-          '.tmp/json-formatter-html.js',
-          '<%= yeoman.app %>/scripts/directives/jsonformatter.js'
+          '<%= yeoman.app %>/scripts/directives/json-formatter.js'
         ],
         dest: 'lib/json-formatter.js'
-      },
-      serve: {
-        options: {
-          banner: '\'use strict\';\n',
-          process: function(src, filepath) {
-            return '// Source: ' + filepath + '\n' +
-              src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
-          },
-        },
-        src: [
-          '.tmp/json-formatter-html.js',
-          '<%= yeoman.app %>/scripts/directives/jsonformatter.js'
-        ],
-        dest: '<%= yeoman.app %>/scripts/directives/json-formatter-with-html.js'
       }
-    },
-    htmlConvert: {
-      options: {
-        quoteChar: '\'',
-        base: 'app/templates/',
-        module: '__jsonformatterTemplate__'
-      },
-      jsonFormatter: {
-        src: ['<%= yeoman.app %>/templates/json-formatter.html'],
-        dest: '.tmp/json-formatter-html.js'
-      },
     },
     'gh-pages': {
       options: {
@@ -439,6 +413,23 @@ module.exports = function (grunt) {
       },
       src: ['**']
     }
+  });
+
+
+  // Custom task for embedding template in the JS
+  grunt.registerTask('template-js', function () {
+    function escapeContent(content, quoteChar, indentString) {
+      var bsRegexp = new RegExp('\\\\', 'g');
+      var quoteRegexp = new RegExp('\\' + quoteChar, 'g');
+      var nlReplace = '\\n' + quoteChar + ' +\n' + indentString + indentString + quoteChar;
+      return content.replace(bsRegexp, '\\\\').replace(quoteRegexp, '\\' + quoteChar).replace(/\r?\n/g, nlReplace);
+    }
+    var fs = require('fs');
+    var js = fs.readFileSync('./app/scripts/directives/jsonformatter-raw.js').toString();
+    var html = fs.readFileSync('./app/templates/json-formatter.html').toString();
+    html = escapeContent(html, '\'', '  ');
+    var results = grunt.template.process(js, {data: {jsonFormatter: html}});
+    fs.writeFileSync('./app/scripts/directives/json-formatter.js', results);
   });
 
 
@@ -450,10 +441,9 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'bowerInstall',
+      'template-js',
       'concurrent:server',
       'autoprefixer',
-      'htmlConvert:jsonFormatter',
-      'concat:serve',
       'connect:livereload',
       'watch'
     ]);
@@ -466,6 +456,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'template-js',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
@@ -476,10 +467,9 @@ module.exports = function (grunt) {
     'clean:dist',
     'bowerInstall',
     'useminPrepare',
+    'template-js',
     'concurrent:dist',
     'autoprefixer',
-    'htmlConvert:jsonFormatter',
-    'concat:serve',
     'concat',
     'ngmin',
     'copy:dist',
@@ -499,7 +489,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('lib', [
     'clean:lib',
-    'htmlConvert:jsonFormatter',
     'bowerInstall',
     'concat:lib',
     'compass:lib'
