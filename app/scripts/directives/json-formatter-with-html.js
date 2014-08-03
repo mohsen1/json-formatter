@@ -1,6 +1,8 @@
-angular.__jsonformatterTemplate__ = {};
+'use strict';
+// Source: .tmp/json-formatter-html.js
+var __jsonformatterTemplate__ = {};
 
-angular.__jsonformatterTemplate__['json-formatter.html'] = '<div ng-init="isOpen = false" class="json-formatter-row">\n' +
+__jsonformatterTemplate__['json-formatter.html'] = '<div ng-init="isOpen = false" class="json-formatter-row">\n' +
    '  <a ng-click="isOpen = !isOpen">\n' +
    '    <span class="toggler {{isOpen ? \'open\' : \'\'}}" ng-if="isObject"></span>\n' +
    '    <span class="key" ng-if="hasKey">{{key}}:</span>\n' +
@@ -21,8 +23,7 @@ angular.__jsonformatterTemplate__['json-formatter.html'] = '<div ng-init="isOpen
    '</div>\n' +
    '';
 
-'use strict';
-
+// Source: app/scripts/directives/jsonformatter.js
 angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', ['RecursionHelper', function (RecursionHelper) {
   function link(scope) {
     scope.isArray = function () {
@@ -59,7 +60,7 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
   }
 
   return {
-    template: angular.__jsonformatterTemplate__['json-formatter.html'],
+    template: __jsonformatterTemplate__['json-formatter.html'],
     restrict: 'E',
     replace: true,
     scope: {
