@@ -36,7 +36,7 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
   }
 
   return {
-    template: __json_formatter_templates__['json-formatter.html'],
+    template: __jsonformatterTemplate__['json-formatter.html'],
     restrict: 'E',
     replace: true,
     scope: {

@@ -393,6 +393,13 @@ module.exports = function (grunt) {
     },
     concat: {
       lib: {
+        options: {
+          banner: '\'use strict\';\n',
+          process: function(src, filepath) {
+            return '// Source: ' + filepath + '\n' +
+              src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+          },
+        },
         src: [
           '<%= yeoman.app %>/scripts/factories/recursion-helper.js',
           '.tmp/json-formatter-html.js',
@@ -401,6 +408,13 @@ module.exports = function (grunt) {
         dest: 'lib/json-formatter.js'
       },
       serve: {
+        options: {
+          banner: '\'use strict\';\n',
+          process: function(src, filepath) {
+            return '// Source: ' + filepath + '\n' +
+              src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
+          },
+        },
         src: [
           '.tmp/json-formatter-html.js',
           '<%= yeoman.app %>/scripts/directives/jsonformatter.js'
@@ -410,8 +424,9 @@ module.exports = function (grunt) {
     },
     htmlConvert: {
       options: {
+        quoteChar: '\'',
         base: 'app/templates/',
-        module: '__json_formatter_templates__'
+        module: '__jsonformatterTemplate__'
       },
       jsonFormatter: {
         src: ['<%= yeoman.app %>/templates/json-formatter.html'],
