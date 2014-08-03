@@ -20,6 +20,7 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
     
   ```
 * Use `<json-formatter>` directive
+ 
   ```
   <json-formatter json="{my: 'json'}"></json-formatter>
   ```
