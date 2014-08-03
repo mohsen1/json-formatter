@@ -479,8 +479,7 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'htmlmin',
-    'shell:update-gh-pages-branch'
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
@@ -495,4 +494,6 @@ module.exports = function (grunt) {
     'concat:lib',
     'compass:lib'
   ]);
+
+  grunt.registerTask('ship', ['build', 'lib', 'shell:update-gh-pages-branch'])
 };
