@@ -1,6 +1,7 @@
 node_modules
 dist
 .tmp
+.grunt
 .sass-cache
 app/bower_components
 .DS_Store
