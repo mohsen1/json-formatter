@@ -4,6 +4,10 @@
 }
 .json-formatter-row .json-formatter-row {
   margin-left: 1em;
+  color: black;
+}
+.json-formatter-row .json-formatter-row, .json-formatter-row .json-formatter-row:hover {
+  text-decoration: none;
 }
 .json-formatter-row .children.empty {
   opacity: 0.5;

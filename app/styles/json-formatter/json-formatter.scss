@@ -1,4 +1,5 @@
 .json-formatter-row {
+  $default-color: black;
   $string-color: green;
   $number-color: blue;
   $boolean-color: red;
@@ -13,6 +14,11 @@
 
   .json-formatter-row {
     margin-left: 1em;
+    color: $default-color;
+
+    &, &:hover {
+      text-decoration: none;
+    }
   }
 
   .children {
