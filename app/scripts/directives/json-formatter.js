@@ -90,7 +90,7 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     '        <span class="constructor-name">{{constructorName}}</span>\n' +
     '        <span ng-if="isArray()"><span class="bracket">[</span><span class="number">{{json.length}}</span><span class="bracket">]</span></span>\n' +
     '      </span>\n' +
-    '      <span ng-if="!isObject" class="{{type}}" ng-class="{date: isDate, url: isUrl}">{{parseValue(json)}}</span>\n' +
+    '      <span ng-if="!isObject" ng-click="openLink(isUrl)" class="{{type}}" ng-class="{date: isDate, url: isUrl}">{{parseValue(json)}}</span>\n' +
     '    </span>\n' +
     '  </a>\n' +
     '  <div class="children" ng-if="keys.length && isOpen">\n' +
