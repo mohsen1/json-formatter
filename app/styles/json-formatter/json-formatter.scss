@@ -4,6 +4,7 @@
   $number-color: blue;
   $boolean-color: red;
   $null-color: #855A00;
+  $function-color: #FF20ED;
   $rotate-time: 100ms;
   $toggler-opacity: 0.6;
   $toggler-color: #45376F;
@@ -40,6 +41,7 @@
   .number { color: $number-color; }
   .boolean { color: $boolean-color; }
   .null { color: $null-color; }
+  .function { color: $function-color; }
   .date { background-color: rgba($default-color, 0.05); }
   .url {
     text-decoration: underline;

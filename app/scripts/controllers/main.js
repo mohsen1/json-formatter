@@ -15,8 +15,17 @@ angular.module('jsonFormatterApp').controller('MainCtrl', function ($scope) {
       c: 'd',
       e: 'f\"'
     },
-    string: 'Hello World'
+    string: 'Hello World',
+    func: function add(a,b){return a + b; }
   };
 
   $scope.deep = {a:{b:{c:{d:{}}}}};
+
+  $scope.fn = function fn(arg1, /*arg*/arg2) {
+    return arg1 + arg2;
+  };
+
+
+  function Person(name){ this.name = name; }
+  $scope.person = new Person('Mohsen');
 });

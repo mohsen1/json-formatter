@@ -60,6 +60,11 @@ angular
         <json-formatter json='"https://github.com/mohsen1/json-formatter"'></json-formatter>
       </div>
 
+      <h6>Function</h6>
+      <div class="result">
+        <json-formatter json="fn"></json-formatter>
+      </div>
+
       <h6>Empty object</h6>
       <div class="result">
         <json-formatter json="{}"></json-formatter>
@@ -123,17 +128,25 @@ angular
       <div class="result">
         <json-formatter json='deep' open="1"></json-formatter>
       </div>
+
       <h6>Opened 2 level</h6>
       <div class="result">
         <json-formatter json='deep' open="2"></json-formatter>
       </div>
+
       <h6>Opened 3 level</h6>
       <div class="result">
         <json-formatter json='deep' open="3"></json-formatter>
       </div>
+
       <h6>Opened 4 level</h6>
       <div class="result">
         <json-formatter json='deep' open="4"></json-formatter>
+      </div>
+
+      <h6>Custom constructors</h6>
+      <div class="result">
+        <json-formatter json='person'></json-formatter>
       </div>
     </div>
   </div>

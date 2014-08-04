@@ -7,10 +7,7 @@
         <span class="constructor-name">{{constructorName}}</span>
         <span ng-if="isArray()"><span class="bracket">[</span><span class="number">{{json.length}}</span><span class="bracket">]</span></span>
       </span>
-      <span ng-if="!isObject && type !== 'string'" class="{{type}}">{{type === 'null' ? 'null' : json}}</span>
-      <span ng-if="!isObject && type === 'string'" class="{{type}}" 
-        ng-class="{date: isDate, url: isUrl}"
-        ng-click="openLink(isUrl)">"{{escapeString(json)}}"</span>
+      <span ng-if="!isObject" class="{{type}}" ng-class="{date: isDate, url: isUrl}">{{parseValue(json)}}</span>
     </span>
   </a>
   <div class="children" ng-if="keys.length && isOpen">

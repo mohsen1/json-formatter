@@ -1,6 +1,10 @@
 'use strict';
 
 angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', ['RecursionHelper', function (RecursionHelper) {
+  function escapeString(str) {
+    return str.replace('"', '\"');
+  }
+
   function link(scope) {
     scope.isArray = function () {
       return Array.isArray(scope.json);
@@ -34,10 +38,6 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
       }
     }
 
-    scope.escapeString = function (str) {
-      return str.replace('"', '\"');
-    };
-
     scope.isEmptyObject = function () {
       return scope.keys && !scope.keys.length && scope.isOpen && !scope.isArray();
     };
@@ -60,6 +60,24 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
         window.location.href = scope.json;
       }
     };
+
+    scope.parseValue = function (value){
+      if (scope.type === 'null') {
+        return 'null';
+      }
+      if (scope.type === 'string') {
+        value = '"' + escapeString(value) + '"';
+      }
+      if (scope.type === 'function'){
+
+        // Remove content of the function
+        return scope.json.toString()
+          .replace(/\n/g, '')
+          .replace(/\{.+?\}/, '') + '{ ... }';
+
+      }
+      return value;
+    };
   }
 
   return {
@@ -72,10 +90,7 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     '        <span class="constructor-name">{{constructorName}}</span>\n' +
     '        <span ng-if="isArray()"><span class="bracket">[</span><span class="number">{{json.length}}</span><span class="bracket">]</span></span>\n' +
     '      </span>\n' +
-    '      <span ng-if="!isObject && type !== \'string\'" class="{{type}}">{{type === \'null\' ? \'null\' : json}}</span>\n' +
-    '      <span ng-if="!isObject && type === \'string\'" class="{{type}}" \n' +
-    '        ng-class="{date: isDate, url: isUrl}"\n' +
-    '        ng-click="openLink(isUrl)">"{{escapeString(json)}}"</span>\n' +
+    '      <span ng-if="!isObject" class="{{type}}" ng-class="{date: isDate, url: isUrl}">{{parseValue(json)}}</span>\n' +
     '    </span>\n' +
     '  </a>\n' +
     '  <div class="children" ng-if="keys.length && isOpen">\n' +
