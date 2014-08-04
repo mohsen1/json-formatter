@@ -35,67 +35,67 @@ angular
   <div class="tests">
     <div class="group">
 
-      <h6>Null</h6>
+      <h4>Null</h4>
       <div class="result">
         <json-formatter json='null'></json-formatter>
       </div>
 
-      <h6>Number</h6>
+      <h4>Number</h4>
       <div class="result">
         <json-formatter json='42'></json-formatter>
       </div>
 
-      <h6>String</h6>
+      <h4>String</h4>
       <div class="result">
         <json-formatter json='"Hello world!"'></json-formatter>
       </div>
 
-      <h6>Date String</h6>
+      <h4>Date String</h4>
       <div class="result">
         <json-formatter json='"Sun Aug 03 2014 15:03:26 GMT-0700 (PDT)"'></json-formatter>
       </div>
 
-      <h6>URL String</h6>
+      <h4>URL String</h4>
       <div class="result">
         <json-formatter json='"https://github.com/mohsen1/json-formatter"'></json-formatter>
       </div>
 
-      <h6>Function</h6>
+      <h4>Function</h4>
       <div class="result">
         <json-formatter json="fn"></json-formatter>
       </div>
 
-      <h6>Empty object</h6>
+      <h4>Empty object</h4>
       <div class="result">
         <json-formatter json="{}"></json-formatter>
       </div>
 
-      <h6>Empty array</h6>
+      <h4>Empty array</h4>
       <div class="result">
         <json-formatter json="[]"></json-formatter>
       </div>
 
-      <h6>Object with one key</h6>
+      <h4>Object with one key</h4>
       <div class="result">
         <json-formatter json="{me: 1}"></json-formatter>
       </div>
 
-      <h6>Nested Object</h6>
+      <h4>Nested Object</h4>
       <div class="result">
         <json-formatter json="{me: {you: 2}}"></json-formatter>
       </div>
 
-      <h6>Array</h6>
+      <h4>Array</h4>
       <div class="result">
         <json-formatter json="['one', 'two', 'three']"></json-formatter>
       </div>
 
-      <h6>Complex Object</h6>
+      <h4>Complex Object</h4>
       <div class="result">
         <json-formatter json='complex'></json-formatter>
       </div>
 
-      <h6>Object with long key</h6>
+      <h4>Object with long key</h4>
       <div class="result">
         <json-formatter json ='{
           "a_very_llllllllllllllllllllllllllllllllong_key": {m3:1},
@@ -103,7 +103,7 @@ angular
         '></json-formatter>
       </div>
 
-      <h6>Dates</h6>
+      <h4>Dates</h4>
       <div class="result">
         <json-formatter json='{
           "Date.toJSON": "2014-08-03T21:44:46.490Z",
@@ -112,41 +112,47 @@ angular
         }'></json-formatter>
       </div>
 
-      <h6>Long String content</h6>
+      <h4>Long String content</h4>
       <div class="result">
         <json-formatter json='{
           "long": "Slow-carb hella vegan, Bushwick flexitarian Portland roof party photo booth forage. Fixie try-hard gastropub Etsy single-origin coffee bitters. Crucifix sartorial squid, bitters chillwave before they sold out farm-to-table mustache direct trade \ndeep v bicycle rights Austin bespoke. Odd Future sriracha Thundercats whatever pork belly Marfa, mumblecore gluten-free dreamcatcher. Dreamcatcher next level polaroid mustache fap gentrify typewriter. PBR Shoreditch cred, pug narwhal slow-carb seitan. Bushwick +1 banjo, chia flexitarian keytar retro PBR&B cred."
         }'></json-formatter>
       </div>
 
-      <h6>HTML content</h6>
+      <h4>HTML content</h4>
       <div class="result">
         <json-formatter json='{html: "<h1>H1 Heading</h1>"}'></json-formatter>
       </div>
 
-      <h6>Opened 1 level</h6>
+      <h4>Opened 1 level</h4>
       <div class="result">
         <json-formatter json='deep' open="1"></json-formatter>
       </div>
 
-      <h6>Opened 2 level</h6>
+      <h4>Opened 2 level</h4>
       <div class="result">
         <json-formatter json='deep' open="2"></json-formatter>
       </div>
 
-      <h6>Opened 3 level</h6>
+      <h4>Opened 3 level</h4>
       <div class="result">
         <json-formatter json='deep' open="3"></json-formatter>
       </div>
 
-      <h6>Opened 4 level</h6>
+      <h4>Opened 4 level</h4>
       <div class="result">
         <json-formatter json='deep' open="4"></json-formatter>
       </div>
 
-      <h6>Custom constructors</h6>
+      <h4>Custom constructors</h4>
       <div class="result">
         <json-formatter json='person'></json-formatter>
+      </div>
+
+      <h4>Dark theme</h4>
+      <p>To use dark theme add <code>dark</code> class to the wrapper</p>
+      <div class="result dark">
+        <json-formatter json='complex'></json-formatter>
       </div>
     </div>
   </div>

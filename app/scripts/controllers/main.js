@@ -16,6 +16,8 @@ angular.module('jsonFormatterApp').controller('MainCtrl', function ($scope) {
       e: 'f\"'
     },
     string: 'Hello World',
+    url: 'https://github.com/mohsen1/json-formatter',
+    date: 'Sun Aug 03 2014 20:46:55 GMT-0700 (PDT)',
     func: function add(a,b){return a + b; }
   };
 

@@ -1,16 +1,16 @@
-.json-formatter-row {
-  $default-color: black;
-  $string-color: green;
-  $number-color: blue;
-  $boolean-color: red;
-  $null-color: #855A00;
-  $function-color: #FF20ED;
-  $rotate-time: 100ms;
-  $toggler-opacity: 0.6;
-  $toggler-color: #45376F;
-  $bracket-color: blue;
-  $key-color: #00008B;
-  $url-color: blue;
+@mixin theme(
+  $default-color: black,
+  $string-color: green,
+  $number-color: blue,
+  $boolean-color: red,
+  $null-color: #855A00,
+  $function-color: #FF20ED,
+  $rotate-time: 100ms,
+  $toggler-opacity: 0.6,
+  $toggler-color: #45376F,
+  $bracket-color: blue,
+  $key-color: #00008B,
+  $url-color: blue ){
 
   font-family: monospace;
   &, a, a:hover {
@@ -20,7 +20,6 @@
 
   .json-formatter-row {
     margin-left: 1em;
-
   }
 
   .children {
@@ -75,4 +74,25 @@
       transform: rotate(90deg);
     }
   }
+}
+
+
+.json-formatter-row {
+  @include theme();
+}
+
+.dark .json-formatter-row{
+  @include theme(
+    $default-color: white,
+    $string-color: #31F031,
+    $number-color: #66C2FF,
+    $boolean-color: #EC4242,
+    $null-color: #EEC97D,
+    $function-color: #FD48CB,
+    $rotate-time: 100ms,
+    $toggler-opacity: 0.6,
+    $toggler-color: #45376F,
+    $bracket-color: #9494FF,
+    $key-color: #23A0DB,
+    $url-color: #027BFF);
 }
