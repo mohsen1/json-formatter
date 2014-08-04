@@ -33,6 +33,9 @@
 .json-formatter-row .null {
   color: #855a00;
 }
+.json-formatter-row .function {
+  color: #ff20ed;
+}
 .json-formatter-row .date {
   background-color: rgba(0, 0, 0, 0.05);
 }
