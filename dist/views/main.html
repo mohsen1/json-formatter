@@ -1,19 +1,162 @@
-<div class="header"><ul class="nav nav-pills pull-right"><li class="active"><a ng-href="https://github.com/mohsen1/json-formatter">Code in GitHub</a></li></ul><h3 class="text-muted">&lt;json-formatter&gt;</h3></div><div class="row marketing"><h4>About</h4><p>JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with a collapsible navigation.</p><h4>How to use</h4><p>Install via Bower</p><p></p><p><code>bower install json-formatter --save</code></p><p>Add <code>jsonFormatter</code> to your app dependencies</p><p><pre>
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="https://github.com/mohsen1/json-formatter">Code in GitHub</a></li>
+  </ul>
+  <h3 class="text-muted">&lt;json-formatter&gt;</h3>
+</div>
+
+<div class="row marketing">
+  <h4>About</h4>
+  <p>
+    JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with a collapsible navigation.
+  </p>
+  <h4>How to use</h4>
+  <p>Install via Bower<p>
+  <p><code>bower install json-formatter --save</code></p>
+  <p>Add <code>jsonFormatter</code> to your app dependencies</p>
+  <p>
+    <pre>
 angular
   .module('jsonFormatterApp', [
     'ngCookies',
     ...
     'jsonFormatter'
   ])
-    </pre></p><p>Use <code>&lt;json-formatter&gt;</code> directive</p><p><pre>
+    </pre>
+  </p>
+  <p>Use <code>&lt;json-formatter&gt;</code> directive</p>
+  <p>
+<pre>
 &lt;json-formatter open="1" json="{my: 'json'}"&gt;&lt;/json-formatter&gt;
-</pre></p><h4 id="examples">Examples</h4><div class="tests"><div class="group"><h4>Null</h4><div class="result"><json-formatter open json="null"></json-formatter></div><h4>Number</h4><div class="result"><json-formatter open json="42"></json-formatter></div><h4>String</h4><div class="result"><json-formatter open json="&quot;Hello world!&quot;"></json-formatter></div><h4>Date String</h4><div class="result"><json-formatter open json="&quot;Sun Aug 03 2014 15:03:26 GMT-0700 (PDT)&quot;"></json-formatter></div><h4>URL String</h4><div class="result"><json-formatter open json="&quot;https://github.com/mohsen1/json-formatter&quot;"></json-formatter></div><h4>Function</h4><div class="result"><json-formatter open json="fn"></json-formatter></div><h4>Empty object</h4><div class="result"><json-formatter open json="{}"></json-formatter></div><h4>Empty array</h4><div class="result"><json-formatter open json="[]"></json-formatter></div><h4>Object with one key</h4><div class="result"><json-formatter open json="{me: 1}"></json-formatter></div><h4>Nested Object</h4><div class="result"><json-formatter open json="{me: {you: 2}}"></json-formatter></div><h4>Array</h4><div class="result"><json-formatter open json="['one', 'two', 'three']"></json-formatter></div><h4>Complex Object</h4><div class="result"><json-formatter open json="complex"></json-formatter></div><h4>Object with long key</h4><div class="result"><json-formatter open json="{
-          &quot;a_very_llllllllllllllllllllllllllllllllong_key&quot;: {m3:1},
+</pre>
+  </p>
+
+  <h4 id="examples">Examples</h4>
+  <div class="tests">
+    <div class="group">
+
+      <h4>Null</h4>
+      <div class="result">
+        <json-formatter open="1" json='null'></json-formatter>
+      </div>
+
+      <h4>Number</h4>
+      <div class="result">
+        <json-formatter open="1" json='42'></json-formatter>
+      </div>
+
+      <h4>String</h4>
+      <div class="result">
+        <json-formatter open="1" json='"Hello world!"'></json-formatter>
+      </div>
+
+      <h4>Date String</h4>
+      <div class="result">
+        <json-formatter open="1" json='"Sun Aug 03 2014 15:03:26 GMT-0700 (PDT)"'></json-formatter>
+      </div>
+
+      <h4>URL String</h4>
+      <div class="result">
+        <json-formatter open="1" json='"https://github.com/mohsen1/json-formatter"'></json-formatter>
+      </div>
+
+      <h4>Function</h4>
+      <div class="result">
+        <json-formatter open="1" json="fn"></json-formatter>
+      </div>
+
+      <h4>Empty object</h4>
+      <div class="result">
+        <json-formatter open="1" json="{}"></json-formatter>
+      </div>
+
+      <h4>Empty array</h4>
+      <div class="result">
+        <json-formatter open="1" json="[]"></json-formatter>
+      </div>
+
+      <h4>Object with one key</h4>
+      <div class="result">
+        <json-formatter open="1" json="{me: 1}"></json-formatter>
+      </div>
+
+      <h4>Nested Object</h4>
+      <div class="result">
+        <json-formatter open="1" json="{me: {you: 2}}"></json-formatter>
+      </div>
+
+      <h4>Array</h4>
+      <div class="result">
+        <json-formatter open="1" json="['one', 'two', 'three']"></json-formatter>
+      </div>
+
+      <h4>Complex Object</h4>
+      <div class="result">
+        <json-formatter open="1" json='complex'></json-formatter>
+      </div>
+
+      <h4>Object with long key</h4>
+      <div class="result">
+        <json-formatter open="1" json ='{
+          "a_very_llllllllllllllllllllllllllllllllong_key": {m3:1},
           }
-        "></json-formatter></div><h4>Dates</h4><div class="result"><json-formatter open json="{
-          &quot;Date.toJSON&quot;: &quot;2014-08-03T21:44:46.490Z&quot;,
-          &quot;newDate&quot;: &quot;Sun Aug 03 2014 14:44:46 GMT-0700 (PDT)&quot;,
-          &quot;Date.now&quot;: 1407102492243
-        }"></json-formatter></div><h4>Long String content</h4><div class="result"><json-formatter open json="{
-          &quot;long&quot;: &quot;Slow-carb hella vegan, Bushwick flexitarian Portland roof party photo booth forage. Fixie try-hard gastropub Etsy single-origin coffee bitters. Crucifix sartorial squid, bitters chillwave before they sold out farm-to-table mustache direct trade \ndeep v bicycle rights Austin bespoke. Odd Future sriracha Thundercats whatever pork belly Marfa, mumblecore gluten-free dreamcatcher. Dreamcatcher next level polaroid mustache fap gentrify typewriter. PBR Shoreditch cred, pug narwhal slow-carb seitan. Bushwick +1 banjo, chia flexitarian keytar retro PBR&B cred.&quot;
-        }"></json-formatter></div><h4>HTML content</h4><div class="result"><json-formatter open json="{html: &quot;<h1>H1 Heading</h1>&quot;}"></json-formatter></div><h4>Opened 1 level</h4><div class="result"><json-formatter json="deep" open></json-formatter></div><h4>Opened 2 level</h4><div class="result"><json-formatter json="deep" open></json-formatter></div><h4>Opened 3 level</h4><div class="result"><json-formatter json="deep" open></json-formatter></div><h4>Opened 4 level</h4><div class="result"><json-formatter json="deep" open></json-formatter></div><h4>Custom constructors</h4><div class="result"><json-formatter open json="person"></json-formatter></div><h4>Dark theme</h4><p>To use dark theme add <code>dark</code> class to the wrapper</p><div class="result dark"><json-formatter open json="complex"></json-formatter></div></div></div></div><div class="footer"><p>License Apache 2</p></div>
+        '></json-formatter>
+      </div>
+
+      <h4>Dates</h4>
+      <div class="result">
+        <json-formatter open="1" json='{
+          "Date.toJSON": "2014-08-03T21:44:46.490Z",
+          "newDate": "Sun Aug 03 2014 14:44:46 GMT-0700 (PDT)",
+          "Date.now": 1407102492243
+        }'></json-formatter>
+      </div>
+
+      <h4>Long String content</h4>
+      <div class="result">
+        <json-formatter open="1" json='{
+          "long": "Slow-carb hella vegan, Bushwick flexitarian Portland roof party photo booth forage. Fixie try-hard gastropub Etsy single-origin coffee bitters. Crucifix sartorial squid, bitters chillwave before they sold out farm-to-table mustache direct trade \ndeep v bicycle rights Austin bespoke. Odd Future sriracha Thundercats whatever pork belly Marfa, mumblecore gluten-free dreamcatcher. Dreamcatcher next level polaroid mustache fap gentrify typewriter. PBR Shoreditch cred, pug narwhal slow-carb seitan. Bushwick +1 banjo, chia flexitarian keytar retro PBR&B cred."
+        }'></json-formatter>
+      </div>
+
+      <h4>HTML content</h4>
+      <div class="result">
+        <json-formatter open="1" json='{html: "<h1>H1 Heading</h1>"}'></json-formatter>
+      </div>
+
+      <h4>Opened 1 level</h4>
+      <div class="result">
+        <json-formatter json='deep' open=""></json-formatter>
+      </div>
+
+      <h4>Opened 2 level</h4>
+      <div class="result">
+        <json-formatter json='deep' open="2"></json-formatter>
+      </div>
+
+      <h4>Opened 3 level</h4>
+      <div class="result">
+        <json-formatter json='deep' open="3"></json-formatter>
+      </div>
+
+      <h4>Opened 4 level</h4>
+      <div class="result">
+        <json-formatter json='deep' open="4"></json-formatter>
+      </div>
+
+      <h4>Custom constructors</h4>
+      <div class="result">
+        <json-formatter open="1" json='person'></json-formatter>
+      </div>
+
+      <h4>Dark theme</h4>
+      <p>To use dark theme add <code>dark</code> class to the wrapper</p>
+      <div class="result dark">
+        <json-formatter open="1" json='complex'></json-formatter>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <p>License Apache 2</p>
+</div>
