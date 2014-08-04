@@ -2,7 +2,13 @@
   <ul class="nav nav-pills pull-right">
     <li class="active"><a ng-href="https://github.com/mohsen1/json-formatter">Code in GitHub</a></li>
   </ul>
-  <h3 class="text-muted">&lt;json-formatter&gt;</h3>
+  <h1 class="text-muted">&lt;json-formatter&gt;</h1>
+  <p>
+    <iframe src="http://ghbtns.com/github-btn.html?user=mohsen1&repo=json-formatter&type=watch&size=large&count=true"
+    allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+    <iframe src="http://ghbtns.com/github-btn.html?user=mohsen1&repo=json-formatter&type=fork&size=large&count=true"
+    allowtransparency="true" frameborder="0" scrolling="0" width="170" height="30"></iframe>
+  </p>
 </div>
 
 <div class="row marketing">
@@ -26,10 +32,18 @@ angular
   </p>
   <p>Use <code>&lt;json-formatter&gt;</code> directive</p>
   <p>
-<pre>
+    <pre>
 &lt;json-formatter open="1" json="{my: 'json'}"&gt;&lt;/json-formatter&gt;
-</pre>
+    </pre>
   </p>
+  <p><code>open</code> attribute accepts a number that indicated how many levels JSON should be open</p>
+
+  <h4>Demo</h4>
+  <div class="tests">
+    <div class="result dark">
+      <json-formatter json="complex" open="1"></json-formatter>
+    </div>
+  </div>
 
   <h4 id="examples">Examples</h4>
   <div class="tests">
