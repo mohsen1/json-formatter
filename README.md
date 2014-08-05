@@ -22,8 +22,9 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
 * Use `<json-formatter>` directive
  
   ```
-  <json-formatter json="{my: 'json'}"></json-formatter>
+  <json-formatter json="{my: 'json'}" open="1"></json-formatter>
   ```
+* `open` attribute accepts a number which indicates how many levels rendered JSON should be opened
 
 ## Demo
 See [Examples here](http://mohsenweb.com/json-formatter/dist/#examples) 
