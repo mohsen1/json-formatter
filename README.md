@@ -6,6 +6,7 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
 ## Usage
 
 * Install via Bower
+
   ```bash
   bower install json-formatter --save
   ```
