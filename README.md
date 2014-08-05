@@ -6,11 +6,11 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
 ## Usage
 
 * Install via Bower
-  ```
+  ```bash
   bower install json-formatter --save
   ```
 * Add `jsonFormatter` to your app dependencies
-  ```
+  ```js
   angular
   .module('jsonFormatterApp', [
     'ngCookies',
@@ -21,7 +21,7 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
   ```
 * Use `<json-formatter>` directive
  
-  ```
+  ```html
   <json-formatter json="{my: 'json'}" open="1"></json-formatter>
   ```
 * `open` attribute accepts a number which indicates how many levels rendered JSON should be opened
