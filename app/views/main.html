@@ -168,6 +168,12 @@ angular
       <div class="result dark">
         <json-formatter open="1" json='complex'></json-formatter>
       </div>
+
+      <h4>Updating input</h4>
+      <textarea ng-model="jsonStr"></textarea>
+      <div class="result">
+        <json-formatter json="parseJSONStr()"></json-formatter>
+      </div>
     </div>
   </div>
 </div>

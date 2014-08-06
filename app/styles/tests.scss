@@ -8,6 +8,15 @@
     padding: 0;
   }
 
+  textarea {
+    height: 6em;
+    width: 100%;
+    display: block;
+    -webkit-appearance: none;
+    padding: .3em;
+    font-family: monospace;
+  }
+
   .group {
     padding: 1em;
   }

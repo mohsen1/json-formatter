@@ -20,6 +20,10 @@ angular.module('jsonFormatterApp').controller('MainCtrl', function ($scope) {
     date: 'Sun Aug 03 2014 20:46:55 GMT-0700 (PDT)',
     func: function add(a,b){return a + b; }
   };
+  $scope.jsonStr = JSON.stringify({
+    key: 'value',
+    obj: {}
+  }, null, 4);
 
   $scope.deep = {a:{b:{c:{d:{}}}}};
 
@@ -30,4 +34,8 @@ angular.module('jsonFormatterApp').controller('MainCtrl', function ($scope) {
 
   function Person(name){ this.name = name; }
   $scope.person = new Person('Mohsen');
+
+  $scope.parseJSONStr = function (){
+    return JSON.parse($scope.jsonStr);
+  };
 });
