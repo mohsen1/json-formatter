@@ -168,6 +168,15 @@ angular
       <div class="result dark">
         <json-formatter open="1" json='complex'></json-formatter>
       </div>
+
+      <h4>Updating input</h4>
+      <label>
+        <input type="checkbox" ng-model="c">
+        <span>Alternate <code>json</code></span>
+      </label>
+      <div class="result">
+        <json-formatter json="c ? alternate1 : alternate2" open="1"></json-formatter>
+      </div>
     </div>
   </div>
 </div>
