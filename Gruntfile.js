@@ -406,7 +406,7 @@ module.exports = function (grunt) {
         },
         src: [
           '<%= yeoman.app %>/scripts/factories/recursion-helper.js',
-          '<%= yeoman.app %>/scripts/directives/json-formatter.js'
+          '<%= yeoman.app %>/scripts/directives/.tmp/json-formatter-tpl.js'
         ],
         dest: 'lib/json-formatter.js'
       }
@@ -429,11 +429,13 @@ module.exports = function (grunt) {
       return content.replace(bsRegexp, '\\\\').replace(quoteRegexp, '\\' + quoteChar).replace(/\r?\n/g, nlReplace);
     }
     var fs = require('fs');
-    var js = fs.readFileSync('./app/scripts/directives/jsonformatter-raw.js').toString();
+    var mkdirp = require('mkdirp');
+    mkdirp('./app/scripts/directives/.tmp/');
+    var js = fs.readFileSync('./app/scripts/directives/jsonformatter.js').toString();
     var html = fs.readFileSync('./app/templates/json-formatter.html').toString();
     html = escapeContent(html, '\'', '  ');
     var results = grunt.template.process(js, {data: {jsonFormatter: html}});
-    fs.writeFileSync('./app/scripts/directives/json-formatter.js', results);
+    fs.writeFileSync('./app/scripts/directives/.tmp/json-formatter-tpl.js', results);
   });
 
 
@@ -494,6 +496,7 @@ module.exports = function (grunt) {
   grunt.registerTask('lib', [
     'clean:lib',
     'bowerInstall',
+    'template-js',
     'concat:lib',
     'compass:lib'
   ]);
