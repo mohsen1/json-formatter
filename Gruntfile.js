@@ -49,6 +49,10 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      templateJs: {
+        files: ['<%= yeoman.app %>/scripts/directives/jsonformatter-raw.js'],
+        tasks: ['template-js']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
