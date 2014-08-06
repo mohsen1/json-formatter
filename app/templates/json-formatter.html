@@ -4,15 +4,15 @@
     <span class="key" ng-if="hasKey">{{key}}:</span>
     <span class="value">
       <span ng-if="isObject">
-        <span class="constructor-name">{{constructorName}}</span>
+        <span class="constructor-name">{{getConstructorName(json)}}</span>
         <span ng-if="isArray()"><span class="bracket">[</span><span class="number">{{json.length}}</span><span class="bracket">]</span></span>
       </span>
       <span ng-if="!isObject" ng-click="openLink(isUrl)" class="{{type}}" ng-class="{date: isDate, url: isUrl}">{{parseValue(json)}}</span>
     </span>
   </a>
-  <div class="children" ng-if="keys.length && isOpen">
-    <json-formatter ng-repeat="key in keys" json="json[key]" key="key" open="childrenOpen()"></json-formatter>
+  <div class="children" ng-if="getKeys().length && isOpen">
+    <json-formatter ng-repeat="key in getKeys()" json="json[key]" key="key" open="childrenOpen()"></json-formatter>
   </div>
   <div class="children empty object" ng-if="isEmptyObject()"></div>
-  <div class="children empty array" ng-if="keys && !keys.length && isOpen && isArray()"></div>
+  <div class="children empty array" ng-if="getKeys() && !getKeys().length && isOpen && isArray()"></div>
 </div>

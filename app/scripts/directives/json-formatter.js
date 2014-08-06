@@ -30,12 +30,16 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     scope.isObject = scope.json &&
       typeof scope.json === 'object';
 
-    if (scope.isObject) {
-      scope.keys = Object.keys(scope.json);
-    }
+    scope.getKeys = function (){
+      if (scope.isObject) {
+        return Object.keys(scope.json);
+      }
+    };
     scope.type = typeof scope.json;
     scope.hasKey = typeof scope.key !== 'undefined';
-    scope.constructorName = getObjectName(scope.json);
+    scope.getConstructorName = function(){
+      return getObjectName(scope.json);
+    };
 
     // Set custom type for null
     if (scope.json === null){
@@ -56,7 +60,7 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     }
 
     scope.isEmptyObject = function () {
-      return scope.keys && !scope.keys.length && scope.isOpen && !scope.isArray();
+      return scope.getKeys() && !scope.getKeys().length && scope.isOpen && !scope.isArray();
     };
 
 
@@ -104,17 +108,17 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     '    <span class="key" ng-if="hasKey">{{key}}:</span>\n' +
     '    <span class="value">\n' +
     '      <span ng-if="isObject">\n' +
-    '        <span class="constructor-name">{{constructorName}}</span>\n' +
+    '        <span class="constructor-name">{{getConstructorName(json)}}</span>\n' +
     '        <span ng-if="isArray()"><span class="bracket">[</span><span class="number">{{json.length}}</span><span class="bracket">]</span></span>\n' +
     '      </span>\n' +
     '      <span ng-if="!isObject" ng-click="openLink(isUrl)" class="{{type}}" ng-class="{date: isDate, url: isUrl}">{{parseValue(json)}}</span>\n' +
     '    </span>\n' +
     '  </a>\n' +
-    '  <div class="children" ng-if="keys.length && isOpen">\n' +
-    '    <json-formatter ng-repeat="key in keys" json="json[key]" key="key" open="childrenOpen()"></json-formatter>\n' +
+    '  <div class="children" ng-if="getKeys().length && isOpen">\n' +
+    '    <json-formatter ng-repeat="key in getKeys()" json="json[key]" key="key" open="childrenOpen()"></json-formatter>\n' +
     '  </div>\n' +
     '  <div class="children empty object" ng-if="isEmptyObject()"></div>\n' +
-    '  <div class="children empty array" ng-if="keys && !keys.length && isOpen && isArray()"></div>\n' +
+    '  <div class="children empty array" ng-if="getKeys() && !getKeys().length && isOpen && isArray()"></div>\n' +
     '</div>\n' +
     '',
     restrict: 'E',

@@ -30,12 +30,16 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     scope.isObject = scope.json &&
       typeof scope.json === 'object';
 
-    if (scope.isObject) {
-      scope.keys = Object.keys(scope.json);
-    }
+    scope.getKeys = function (){
+      if (scope.isObject) {
+        return Object.keys(scope.json);
+      }
+    };
     scope.type = typeof scope.json;
     scope.hasKey = typeof scope.key !== 'undefined';
-    scope.constructorName = getObjectName(scope.json);
+    scope.getConstructorName = function(){
+      return getObjectName(scope.json);
+    };
 
     // Set custom type for null
     if (scope.json === null){
@@ -56,7 +60,7 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     }
 
     scope.isEmptyObject = function () {
-      return scope.keys && !scope.keys.length && scope.isOpen && !scope.isArray();
+      return scope.getKeys() && !scope.getKeys().length && scope.isOpen && !scope.isArray();
     };
 
 
