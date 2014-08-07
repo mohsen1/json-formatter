@@ -81,7 +81,7 @@
   @include theme();
 }
 
-.dark .json-formatter-row{
+.json-formatter-dark.json-formatter-row {
   @include theme(
     $default-color: white,
     $string-color: #31F031,

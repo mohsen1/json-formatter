@@ -41,7 +41,7 @@ angular
   <h4>Demo</h4>
   <div class="tests">
     <div class="result dark">
-      <json-formatter json="complex" open="1"></json-formatter>
+      <json-formatter json="complex" open="1" class="json-formatter-dark"></json-formatter>
     </div>
   </div>
 
@@ -164,9 +164,9 @@ angular
       </div>
 
       <h4>Dark theme</h4>
-      <p>To use dark theme add <code>dark</code> class to the wrapper</p>
+      <p>To use dark theme add <code>json-formatter-dark</code> class this directive. Note that <code>json-formatter-dark</code> class make text and other elements lighter so they look good on a dark background.</p>
       <div class="result dark">
-        <json-formatter open="1" json='complex'></json-formatter>
+        <json-formatter open="1" json='complex' class="json-formatter-dark"></json-formatter>
       </div>
 
       <h4>Updating input</h4>

@@ -70,73 +70,73 @@
   transform: rotate(90deg);
 }
 
-.dark .json-formatter-row {
+.json-formatter-dark.json-formatter-row {
   font-family: monospace;
 }
-.dark .json-formatter-row, .dark .json-formatter-row a, .dark .json-formatter-row a:hover {
+.json-formatter-dark.json-formatter-row, .json-formatter-dark.json-formatter-row a, .json-formatter-dark.json-formatter-row a:hover {
   color: white;
   text-decoration: none;
 }
-.dark .json-formatter-row .json-formatter-row {
+.json-formatter-dark.json-formatter-row .json-formatter-row {
   margin-left: 1em;
 }
-.dark .json-formatter-row .children.empty {
+.json-formatter-dark.json-formatter-row .children.empty {
   opacity: 0.5;
   margin-left: 1em;
 }
-.dark .json-formatter-row .children.empty.object:after {
+.json-formatter-dark.json-formatter-row .children.empty.object:after {
   content: "No properties";
 }
-.dark .json-formatter-row .children.empty.array:after {
+.json-formatter-dark.json-formatter-row .children.empty.array:after {
   content: "[]";
 }
-.dark .json-formatter-row .string {
+.json-formatter-dark.json-formatter-row .string {
   color: #31f031;
   white-space: pre;
   word-wrap: break-word;
 }
-.dark .json-formatter-row .number {
+.json-formatter-dark.json-formatter-row .number {
   color: #66c2ff;
 }
-.dark .json-formatter-row .boolean {
+.json-formatter-dark.json-formatter-row .boolean {
   color: #ec4242;
 }
-.dark .json-formatter-row .null {
+.json-formatter-dark.json-formatter-row .null {
   color: #eec97d;
 }
-.dark .json-formatter-row .function {
+.json-formatter-dark.json-formatter-row .function {
   color: #fd48cb;
 }
-.dark .json-formatter-row .date {
+.json-formatter-dark.json-formatter-row .date {
   background-color: rgba(255, 255, 255, 0.05);
 }
-.dark .json-formatter-row .url {
+.json-formatter-dark.json-formatter-row .url {
   text-decoration: underline;
   color: #027bff;
   cursor: pointer;
 }
-.dark .json-formatter-row .bracket {
+.json-formatter-dark.json-formatter-row .bracket {
   color: #9494ff;
 }
-.dark .json-formatter-row .key {
+.json-formatter-dark.json-formatter-row .key {
   color: #23a0db;
   cursor: pointer;
 }
-.dark .json-formatter-row .constructor-name {
+.json-formatter-dark.json-formatter-row .constructor-name {
   cursor: pointer;
 }
-.dark .json-formatter-row .toggler {
+.json-formatter-dark.json-formatter-row .toggler {
   font-size: 0.8em;
   line-height: 1.2em;
   vertical-align: middle;
   opacity: 0.6;
   cursor: pointer;
 }
-.dark .json-formatter-row .toggler:after {
+.json-formatter-dark.json-formatter-row .toggler:after {
   display: inline-block;
   transition: transform 100ms ease-in;
   content: "►";
 }
-.dark .json-formatter-row .toggler.open:after {
+.json-formatter-dark.json-formatter-row .toggler.open:after {
   transform: rotate(90deg);
 }
