@@ -36,4 +36,5 @@ See [Examples here](http://mohsenweb.com/json-formatter/dist/#examples)
 ## License
 
 Apache 2.0
+
 See LICENSE 
