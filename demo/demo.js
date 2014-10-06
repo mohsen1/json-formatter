@@ -1,6 +1,6 @@
-'use strict';
+var app = angular.module('demo', ['ngSanitize', 'jsonFormatter']);
 
-angular.module('jsonFormatterApp').controller('MainCtrl', function ($scope) {
+app.controller('MainCtrl', function ($scope) {
   $scope.complex = {
     numbers: [
       1,

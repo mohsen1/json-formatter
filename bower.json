@@ -1,19 +1,10 @@
 {
   "name": "json-formatter",
-  "version": "0.1.10",
-  "main": [
-    "lib/json-formatter.js",
-    "lib/json-formatter.css"
-  ],
-  "ignore": [
-    "node_modules",
-    "dist",
-    ".tmp",
-    ".sass-cache",
-    "app/bower_components",
-    ".DS_Store"
-  ],
-  "author": "Mohsen Azimi <mohsen@mohsenweb.com>",
+  "version": "0.2.1",
+  "authors": "Mohsen Azimi <msn.azi@gmail.com>",
+  "description": "JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with a **collapsible** navigation.",
+  "main": "dist/json-formatter.js, dist/json-formatter.js",
+  "license": "Apache 2.0",
   "keywords": [
     "json",
     "formatter",
@@ -21,16 +12,17 @@
     "json to HTML",
     "JSON"
   ],
-  "license": "Apache 2.0",
-  "dependencies": {
-    "angular": "1.2.15"
-  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "devDependencies": {
-    "angular-mocks": "1.2.15",
-    "angular-scenario": "1.2.15",
-    "bootstrap-sass-official": "3.2.0",
-    "es5-shim": "~2.1.0",
-    "jquery": "components/jquery#~2.1.1",
-    "json3": "~3.2.6"
+    "jquery": "~2.1.1",
+    "angular": "~1.2.26",
+    "angular-sanitize": "~1.2.26",
+    "angular-mocks": "~1.2.26"
   }
 }

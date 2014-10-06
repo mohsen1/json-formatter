@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', ['RecursionHelper', function (RecursionHelper) {
+angular.module('jsonFormatter', ['RecursionHelper'])
+.directive('jsonFormatter', ['RecursionHelper', function (RecursionHelper) {
   function escapeString(str) {
     return str.replace('"', '\"');
   }
@@ -60,7 +61,8 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
     }
 
     scope.isEmptyObject = function () {
-      return scope.getKeys() && !scope.getKeys().length && scope.isOpen && !scope.isArray();
+      return scope.getKeys() && !scope.getKeys().length &&
+        scope.isOpen && !scope.isArray();
     };
 
 
@@ -102,7 +104,7 @@ angular.module('jsonFormatter', ['RecursionHelper']).directive('jsonFormatter', 
   }
 
   return {
-    template: '<%= jsonFormatter %>',
+    templateUrl: 'json-formatter.html',
     restrict: 'E',
     replace: true,
     scope: {

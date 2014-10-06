@@ -1,6 +1,3 @@
 node_modules
-.tmp
-.grunt
-.sass-cache
-app/bower_components
-.DS_Store
+bower_components
+*.log
