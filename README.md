@@ -1,4 +1,7 @@
-# JSON Formatter ![[Build Status](https://secure.travis-ci.org/mohsen1/json-formatter.png?branch=master)](https://travis-ci.org/mohsen1/json-formatter)
+# JSON Formatter 
+<a href="https://travis-ci.org/mohsen1/json-formatter">
+  <img src="https://travis-ci.org/mohsen1/json-formatter.svg">
+</a>
 
 JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with a **collapsible** navigation.
 
