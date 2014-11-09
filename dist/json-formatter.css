@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.2.1 - 2014-10-21T09:08:02.874Z
+ * Version: 0.2.3 - 2014-11-09T20:33:34.588Z
  * License: MIT
  */
 
@@ -41,6 +41,9 @@
 }
 .json-formatter-row .null {
   color: #855a00;
+}
+.json-formatter-row .undefined {
+  color: #ca0b69;
 }
 .json-formatter-row .function {
   color: #ff20ed;
@@ -113,6 +116,9 @@
 }
 .json-formatter-dark.json-formatter-row .null {
   color: #eec97d;
+}
+.json-formatter-dark.json-formatter-row .undefined {
+  color: #ef8fbe;
 }
 .json-formatter-dark.json-formatter-row .function {
   color: #fd48cb;
