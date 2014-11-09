@@ -190,13 +190,21 @@
       <json-formatter open="1" json='complex' class="json-formatter-dark"></json-formatter>
     </div>
 
-    <h4>Updating input</h4>
+    <h4>Altering JSON object</h4>
     <label>
       <input type="checkbox" ng-model="c">
       <span>Alternate <code>json</code></span>
     </label>
     <div class="result">
       <json-formatter json="c ? alternate1 : alternate2" open="1"></json-formatter>
+    </div>
+
+    <h4>Live <code>json</code></h4>
+    <div class="result">
+        <textarea ng-model="textarea" class="col-xs-6"></textarea>
+        <div class="col-xs-6">
+            <json-formatter json="textareaJson" open="1"></json-formatter>
+        </div>
     </div>
   </div>
 </div>

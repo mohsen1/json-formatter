@@ -2,6 +2,7 @@ var app = angular.module('demo', ['ngSanitize', 'jsonFormatter']);
 
 app.controller('MainCtrl', function ($scope) {
   $scope.undef = undefined;
+  $scope.textarea = '{}';
   $scope.complex = {
     numbers: [
       1,
@@ -35,7 +36,11 @@ app.controller('MainCtrl', function ($scope) {
   function Person(name){ this.name = name; }
   $scope.person = new Person('Mohsen');
 
-  $scope.parseJSONStr = function (){
-    return JSON.parse('{}');
-  };
+  $scope.$watch('textarea', function (str){
+    var result = {};
+
+    try {
+        $scope.textareaJson = JSON.parse(str);
+    } catch (e) {}
+  });
 });

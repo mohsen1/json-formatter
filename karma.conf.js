@@ -9,10 +9,10 @@ module.exports = function(config) {
 
     // List of files / patterns to load in the browser
     files: [
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/angular/angular.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/jquery/dist/jquery.js',
+      'app/bower_components/angular/angular.js',
+      'app/bower_components/angular-sanitize/angular-sanitize.js',
+      'app/bower_components/angular-mocks/angular-mocks.js',
 
       'dist/json-formatter.js',
       'dist/json-formatter.css',

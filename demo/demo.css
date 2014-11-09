@@ -27,6 +27,7 @@ textarea {
   padding: 1em;
   border: 1px solid #eee;
   margin-bottom: 2em;
+  overflow: auto;
 }
 
 

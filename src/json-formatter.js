@@ -23,15 +23,17 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     }
   }
 
-  function link(scope) {
+  function link(scope, element, attributes) {
     scope.isArray = function () {
       return Array.isArray(scope.json);
     };
 
-    scope.isObject = scope.json && typeof scope.json === 'object';
+    scope.isObject = function() {
+      return scope.json && typeof scope.json === 'object';
+    };
 
     scope.getKeys = function (){
-      if (scope.isObject) {
+      if (scope.isObject()) {
         return Object.keys(scope.json);
       }
     };
