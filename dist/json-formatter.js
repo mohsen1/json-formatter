@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.2.4 - 2014-11-09T23:45:47.694Z
+ * Version: 0.2.5 - 2014-12-16T18:51:45.410Z
  * License: MIT
  */
 
@@ -99,6 +99,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
     scope.parseValue = function (value){
+      scope.type = typeof scope.json;
       if (scope.type === 'null') {
         return 'null';
       }
