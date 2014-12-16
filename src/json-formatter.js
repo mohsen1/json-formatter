@@ -91,6 +91,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
     scope.parseValue = function (value){
+      scope.type = typeof scope.json;
       if (scope.type === 'null') {
         return 'null';
       }
