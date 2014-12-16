@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.2.5 - 2014-12-16T18:51:45.410Z
+ * Version: 0.2.6 - 2014-12-16T21:33:46.343Z
  * License: MIT
  */
 
@@ -31,6 +31,11 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     }
   }
 
+  function getType(object) {
+    if (object === null) { return 'null'; }
+    return typeof object;
+  }
+
   function link(scope, element, attributes) {
     scope.isArray = function () {
       return Array.isArray(scope.json);
@@ -45,21 +50,11 @@ angular.module('jsonFormatter', ['RecursionHelper'])
         return Object.keys(scope.json);
       }
     };
-    scope.type = typeof scope.json;
+    scope.type = getType(scope.json);
     scope.hasKey = typeof scope.key !== 'undefined';
     scope.getConstructorName = function(){
       return getObjectName(scope.json);
     };
-
-    // Set custom type for null
-    if (scope.json === null){
-      scope.type = 'null';
-    }
-
-    // Set custom type for null
-    if (scope.json === undefined){
-      scope.type = 'undefined';
-    }
 
     if (scope.type === 'string'){
 
@@ -99,7 +94,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
     scope.parseValue = function (value){
-      scope.type = typeof scope.json;
+      scope.type = getType(scope.json);
       if (scope.type === 'null') {
         return 'null';
       }
