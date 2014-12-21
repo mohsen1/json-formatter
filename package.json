@@ -40,6 +40,7 @@
     "karma-chrome-launcher": "^0.1.5",
     "karma-firefox-launcher": "^0.1.3",
     "karma-jasmine": "^0.1.5",
+    "karma-mocha-reporter": "^0.3.1",
     "mversion": "^1.6.0"
   },
   "readme": "# Bower Publishable Angular Directive Boilerplate\n\nThis is a simple AngularJS directive boilerplate to help you start your own AngularJS directive and publish it in Bower and NPM.\nThis readme file itself is a boilerplate.\n\n#### Using the boilerplate\nClone the project and install dependencies, then use Gulp to start the prject.\n```shell\ngit clone git@github.com:mohsen1/angular-directive-boilerplate.git my-directive\ncd my-directive\nnpm install\nbower install\ngulp serve\n```\n#### Install via NPM or bower\n\n```shell\nnpm install angular-directive-boilerplate\n```\n```shell\nbower install angular-directive-boilerplate\n```\n\n### License\nMIT\n",
