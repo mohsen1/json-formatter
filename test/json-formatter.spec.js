@@ -3,11 +3,22 @@
 describe('json-formatter', function () {
   var scope, $compile, $rootScope, element;
 
-  function createDirective(template) {
+  function createDirective(key) {
     var elm;
+    var template = '<json-formatter json="' + key + '"></json-formatter>'
 
     elm = angular.element(template);
     angular.element(document.body).prepend(elm);
+    scope._null = null;
+    scope._undefined = undefined;
+    scope.number = 42;
+    scope._function = function add(a, b) {
+        return a + b;
+    };
+    scope.string = 'Hello world!';
+    scope.date = (new Date(0)).toString(); // begging of Unix time
+    scope.url = 'https://example.com';
+
     $compile(elm)(scope);
     scope.$digest();
 
@@ -22,19 +33,68 @@ describe('json-formatter', function () {
   }));
 
   afterEach(function () {
-    if (element) element.remove();
+    if (element) {
+        element.remove();
+        element = null;
+    }
   });
 
   describe('when created with', function () {
-
     describe('null', function(){
       it('should render "null"', function () {
-        element = createDirective('<json-formatter json="null"></json-formatter>');
-
+        element = createDirective('_null');
         expect(element.text()).toContain('null');
       });
+    });
 
-    })
+    describe('undefined', function(){
+      it('should render "undefined"', function () {
+        element = createDirective('_undefined');
+        expect(element.text()).toContain('undefined');
+      });
+    });
+
+    describe('function', function(){
+      it('should render the function', function () {
+        element = createDirective('_function');
+        expect(element.text()).toContain('function');
+        expect(element.text()).toContain('add');
+        expect(element.text()).toContain('(a, b)');
+      });
+    });
+
+    describe('string', function(){
+      it('should render "Hello world!"', function () {
+        element = createDirective('string');
+        expect(element.text()).toContain('"Hello world!"');
+      });
+    });
+
+    describe('date string', function(){
+      beforeEach(function(){
+        element = createDirective('date');
+      });
+      it('should render "Wed Dec 31 1969 16:00:00 GMT-0800 (PST)"', function () {
+        expect(element.text()).toContain('"Wed Dec 31 1969 16:00:00 GMT-0800 (PST)"');
+      });
+      it('should add "date" class to string', function() {
+        expect(element.find('span.date').length).toBe(1);
+      });
+    });
+
+    describe('url string', function(){
+      beforeEach(function(){
+        element = createDirective('url');
+      });
+      it('should render "https://example.com"', function () {
+        expect(element.text()).toContain('"https://example.com"');
+      });
+      it('should add "url" class to string', function() {
+        expect(element.find('span.url').length).toBe(1);
+      });
+    });
+
+
   });
 
 });
