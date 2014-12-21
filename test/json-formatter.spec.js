@@ -81,8 +81,8 @@ describe('json-formatter', function () {
       beforeEach(function(){
         element = createDirective('date');
       });
-      it('should render "Wed Dec 31 1969 16:00:00 GMT-0800 (PST)"', function () {
-        expect(element.text()).toContain('"Wed Dec 31 1969 16:00:00 GMT-0800 (PST)"');
+      it('should render "' + (new Date(0)).toString() + '"', function () {
+        expect(element.text()).toContain('"' + (new Date(0)).toString() + '"');
       });
       it('should add "date" class to string', function() {
         expect(element.find('span.date').length).toBe(1);
