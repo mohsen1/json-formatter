@@ -3,9 +3,11 @@
 describe('json-formatter', function () {
   var scope, $compile, $rootScope, element;
 
-  function createDirective(key) {
+  function createDirective(key, open) {
+    open = open === undefined ? 0 : open;
     var elm;
-    var template = '<json-formatter json="' + key + '"></json-formatter>'
+    var template = '<json-formatter json="' + key + '" open="' + open +
+      '"></json-formatter>';
 
     elm = angular.element(template);
     angular.element(document.body).prepend(elm);
@@ -18,6 +20,11 @@ describe('json-formatter', function () {
     scope.string = 'Hello world!';
     scope.date = (new Date(0)).toString(); // begging of Unix time
     scope.url = 'https://example.com';
+    scope.emptyObject = {};
+    scope.emptyObjectWithoutPrototype = Object.create(null);
+    scope.emptyArray = [];
+    scope.array = ['one', 'two', 'three'];
+    scope.simpleObject = {me: 1};
 
     $compile(elm)(scope);
     scope.$digest();
@@ -94,7 +101,74 @@ describe('json-formatter', function () {
       });
     });
 
+    describe('empty object', function(){
+      testEmptyObject('emptyObject');
+    });
 
+    // TODO
+    xdescribe('empty object without prototype: Object.create(null)', function(){
+      testEmptyObject('emptyObjectWithoutPrototype');
+    });
+
+    // DRY for testing empty objects
+    function testEmptyObject(key) {
+      describe('with open="0"', function() {
+        beforeEach(function(){
+          element = createDirective(key);
+        });
+        it('should render "Object"', function() {
+          expect(element.text()).toContain('Object');
+        });
+      });
+      describe('with open="1"', function() {
+        beforeEach(function(){
+          element = createDirective(key, 1);
+        });
+        it('should render "Object"', function() {
+          expect(element.text()).toContain('Object');
+        });
+        it('should render have toggler opened', function() {
+          expect(element.find('.toggler').hasClass('open')).toBe(true);
+        });
+      });
+    }
+
+    describe('empty array', function(){
+      beforeEach(function(){
+        element = createDirective('emptyArray');
+      });
+      it('should render "Array"', function(){
+        expect(element.text()).toContain('Array');
+      });
+      it('should have brackets and length: [0]', function(){
+        expect(element.text()).toContain('[0]');
+      });
+    });
+
+    describe('array', function(){
+      beforeEach(function(){
+        element = createDirective('array');
+      });
+      it('should render "Array"', function(){
+        expect(element.text()).toContain('Array');
+      });
+      it('should have brackets and length: [3]', function(){
+        expect(element.text()).toContain('[3]');
+      });
+    });
+
+    describe('object', function(){
+      beforeEach(function(){
+        element = createDirective('simpleObject');
+      });
+      it('should render "Object"', function(){
+        expect(element.text()).toContain('Object');
+      });
+      it('should open when clicking on "Object"', function(){
+        element.find('.constructor-name').click();
+        expect(element.find('.toggler').hasClass('open')).toBe(true);
+      });
+    });
   });
 
 });
