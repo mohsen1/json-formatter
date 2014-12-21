@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.2.7 - 2014-12-21T20:03:46.808Z
+ * Version: 0.2.7 - 2014-12-21T20:19:06.891Z
  * License: MIT
  */
 
@@ -50,7 +50,10 @@ angular.module('jsonFormatter', ['RecursionHelper'])
 
     scope.getKeys = function (){
       if (scope.isObject()) {
-        return Object.keys(scope.json);
+        return Object.keys(scope.json).map(function(key) {
+            if (key === '') { return '""'; }
+            return key;
+        });
       }
     };
     scope.type = getType(scope.json);

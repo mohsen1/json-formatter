@@ -42,7 +42,10 @@ angular.module('jsonFormatter', ['RecursionHelper'])
 
     scope.getKeys = function (){
       if (scope.isObject()) {
-        return Object.keys(scope.json);
+        return Object.keys(scope.json).map(function(key) {
+            if (key === '') { return '""'; }
+            return key;
+        });
       }
     };
     scope.type = getType(scope.json);

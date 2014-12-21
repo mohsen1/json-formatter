@@ -22,6 +22,7 @@ describe('json-formatter', function () {
     scope.url = 'https://example.com';
     scope.emptyObject = {};
     scope.emptyObjectWithoutPrototype = Object.create(null);
+    scope.objectWithEmptyKey = {'': 1};
     scope.emptyArray = [];
     scope.array = ['one', 'two', 'three'];
     scope.simpleObject = {me: 1};
@@ -131,6 +132,17 @@ describe('json-formatter', function () {
         });
       });
     }
+
+    describe('object with empty key', function(){
+      beforeEach(function(){
+        element = createDirective('objectWithEmptyKey', 1);
+      });
+
+      it('should render "" for key', function(){
+        debugger
+        expect(element.find('.key').text()).toContain('""');
+      });
+    });
 
     describe('empty array', function(){
       beforeEach(function(){
