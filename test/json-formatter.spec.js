@@ -105,8 +105,7 @@ describe('json-formatter', function () {
       testEmptyObject('emptyObject');
     });
 
-    // TODO
-    xdescribe('empty object without prototype: Object.create(null)', function(){
+    describe('empty object without prototype: Object.create(null)', function(){
       testEmptyObject('emptyObjectWithoutPrototype');
     });
 

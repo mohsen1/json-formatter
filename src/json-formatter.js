@@ -14,6 +14,9 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     if (object === null) {
       return 'Object';
     }
+    if (typeof object === 'object' && !object.constructor) {
+        return 'Object';
+    }
     var funcNameRegex = /function (.{1,})\(/;
     var results = (funcNameRegex).exec((object).constructor.toString());
     if (results && results.length > 1) {
