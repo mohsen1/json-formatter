@@ -40,4 +40,4 @@ All modern browsers are supported. Lowest supported version of Internet Explorer
 
 Apache 2.0
 
-See LICENSE 
+See [LICENSE](./LICENSE)
