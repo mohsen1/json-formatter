@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.2.7 - 2015-06-02T21:39:36.129Z
+ * Version: 0.2.7 - 2015-06-05T21:19:07.022Z
  * License: MIT
  */
 
@@ -12,7 +12,7 @@
 .json-formatter-row,
 .json-formatter-row a,
 .json-formatter-row a:hover {
-  color: #000000;
+  color: black;
   text-decoration: none;
 }
 .json-formatter-row .json-formatter-row {
@@ -29,15 +29,15 @@
   content: "[]";
 }
 .json-formatter-row .string {
-  color: #008000;
+  color: green;
   white-space: pre;
   word-wrap: break-word;
 }
 .json-formatter-row .number {
-  color: #0000ff;
+  color: blue;
 }
 .json-formatter-row .boolean {
-  color: #ff0000;
+  color: red;
 }
 .json-formatter-row .null {
   color: #855a00;
@@ -53,11 +53,11 @@
 }
 .json-formatter-row .url {
   text-decoration: underline;
-  color: #0000ff;
+  color: blue;
   cursor: pointer;
 }
 .json-formatter-row .bracket {
-  color: #0000ff;
+  color: blue;
 }
 .json-formatter-row .key {
   color: #00008b;
@@ -87,7 +87,7 @@
 .json-formatter-dark.json-formatter-row,
 .json-formatter-dark.json-formatter-row a,
 .json-formatter-dark.json-formatter-row a:hover {
-  color: #ffffff;
+  color: white;
   text-decoration: none;
 }
 .json-formatter-dark.json-formatter-row .json-formatter-row {

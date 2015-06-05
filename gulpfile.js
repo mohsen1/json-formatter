@@ -1,22 +1,23 @@
-var fs = require('fs');
-var connect = require('gulp-connect');
-var gulp = require('gulp');
-var karma = require('karma').server;
-var concat = require('gulp-concat');
-var jshint = require('gulp-jshint');
-var header = require('gulp-header');
-var rename = require('gulp-rename');
-var es = require('event-stream');
-var del = require('del');
-var uglify = require('gulp-uglify');
-var minifyHtml = require('gulp-minify-html');
-var minifyCSS = require('gulp-minify-css');
+var fs            = require('fs');
+var connect       = require('gulp-connect');
+var gulp          = require('gulp');
+var karma         = require('karma').server;
+var concat        = require('gulp-concat');
+var jshint        = require('gulp-jshint');
+var header        = require('gulp-header');
+var rename        = require('gulp-rename');
+var es            = require('event-stream');
+var del           = require('del');
+var uglify        = require('gulp-uglify');
+var minifyHtml    = require('gulp-minify-html');
+var minifyCSS     = require('gulp-minify-css');
 var templateCache = require('gulp-angular-templatecache');
-var gutil = require('gulp-util');
-var plumber = require('gulp-plumber');
-var open = require('gulp-open');
-var less = require('gulp-less');
-var order = require("gulp-order");
+var gutil         = require('gulp-util');
+var plumber       = require('gulp-plumber');
+var open          = require('gulp-open');
+var less          = require('gulp-less');
+var order         = require("gulp-order");
+var runSequence   = require('run-sequence');
 
 
 var config = {
@@ -142,7 +143,9 @@ function handleError(err) {
   this.emit('end');
 };
 
-gulp.task('build', ['clean', 'scripts', 'styles']);
+gulp.task('build', function(cb) {
+  runSequence('clean', 'scripts', 'styles', cb);
+});
 gulp.task('serve', ['build', 'connect', 'watch', 'open']);
 gulp.task('default', ['build', 'test']);
 gulp.task('test', ['build', 'jshint-test', 'karma']);
