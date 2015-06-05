@@ -189,6 +189,17 @@
       <json-formatter open="1" json='person'></json-formatter>
     </div>
 
+    <h4><code>ng-repeat</code></h4>
+    <p>If you are iterating in an array of objects, make sure you are using <code>track by $index</code> to avoid adding extra <code>$$hashKey</code> to your objects.</p>
+    <h5>With <code>track by $index</code></h5>
+    <div class="result">
+      <json-formatter ng-repeat="item in randArray1 track by $index" json="item"></json-formatter>
+    </div>
+    <h5>Without <code>track by $index</code></h5>
+    <div class="result">
+      <json-formatter ng-repeat="item in randArray2" json="item"></json-formatter>
+    </div>
+
     <h4>Dark theme</h4>
     <p>To use dark theme add <code>json-formatter-dark</code> class this directive. Note that <code>json-formatter-dark</code> class make text and other elements lighter so they look good on a dark background.</p>
     <div class="result dark">

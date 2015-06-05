@@ -23,6 +23,14 @@ app.controller('MainCtrl', function ($scope) {
     func: function add(a,b){return a + b; }
   };
 
+  $scope.randArray1 = [null, null, null].map(function(r) {
+    return {value: Math.random()};
+  });
+
+  $scope.randArray2 = [null, null, null].map(function(r) {
+    return {value: Math.random()};
+  });
+
   $scope.deep = {a:{b:{c:{d:{}}}}};
 
   $scope.fn = function fn(arg1, /*arg*/arg2) {
