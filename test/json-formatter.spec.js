@@ -17,6 +17,11 @@ describe('json-formatter', function () {
     scope._function = function add(a, b) {
         return a + b;
     };
+    scope.promiseFunction = function getAdd(service, a) {
+        return service.get(a).then(function (b) {
+            return a + b;
+        });
+    };
     scope.string = 'Hello world!';
     scope.date = (new Date(0)).toString(); // begging of Unix time
     scope.url = 'https://example.com';
@@ -68,6 +73,17 @@ describe('json-formatter', function () {
         expect(element.text()).toContain('function');
         expect(element.text()).toContain('add');
         expect(element.text()).toContain('(a, b)');
+        expect(element.text().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
+      });
+    });
+    
+    describe('promiseFunction', function(){
+      it('should render the function', function () {
+        element = createDirective('promiseFunction');
+        expect(element.text()).toContain('function');
+        expect(element.text()).toContain('getAdd');
+        expect(element.text()).toContain('(service, a)');
+        expect(element.text().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
       });
     });
 

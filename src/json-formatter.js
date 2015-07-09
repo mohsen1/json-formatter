@@ -106,8 +106,8 @@ angular.module('jsonFormatter', ['RecursionHelper'])
 
         // Remove content of the function
         return scope.json.toString()
-          .replace(/\n/g, '')
-          .replace(/\{.+?\}/, '') + '{ ... }';
+          .replace(/[\r\n]/g, '')
+          .replace(/\{.*\}/, '') + '{ ... }';
 
       }
       return value;
