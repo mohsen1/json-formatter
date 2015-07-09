@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.2.7 - 2015-06-05T21:37:16.993Z
+ * Version: 0.3.0 - 2015-07-09T13:22:11.371Z
  * License: MIT
  */
 
@@ -114,8 +114,8 @@ angular.module('jsonFormatter', ['RecursionHelper'])
 
         // Remove content of the function
         return scope.json.toString()
-          .replace(/\n/g, '')
-          .replace(/\{.+?\}/, '') + '{ ... }';
+          .replace(/[\r\n]/g, '')
+          .replace(/\{.*\}/, '') + '{ ... }';
 
       }
       return value;
