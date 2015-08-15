@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.3.0 - 2015-07-09T13:22:11.385Z
+ * Version: 0.3.1 - 2015-08-13T05:50:21.236Z
  * License: MIT
  */
 
@@ -81,6 +81,14 @@
 .json-formatter-row .toggler.open:after {
   transform: rotate(90deg);
 }
+.json-formatter-row > a > .thumbnail-text {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+  font-style: italic;
+}
+.json-formatter-row:hover > a > .thumbnail-text {
+  opacity: 0.6;
+}
 .json-formatter-dark.json-formatter-row {
   font-family: monospace;
 }
@@ -155,4 +163,12 @@
 }
 .json-formatter-dark.json-formatter-row .toggler.open:after {
   transform: rotate(90deg);
+}
+.json-formatter-dark.json-formatter-row > a > .thumbnail-text {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+  font-style: italic;
+}
+.json-formatter-dark.json-formatter-row:hover > a > .thumbnail-text {
+  opacity: 0.6;
 }
