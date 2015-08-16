@@ -1,7 +1,7 @@
 'use strict';
 
 describe('json-formatter', function () {
-  var scope, $compile, $rootScope, element;
+  var scope, $compile, $rootScope, element, fakeModule, thumbnailProviderConfig;
 
   function createDirective(key, open) {
     open = open === undefined ? 0 : open;
@@ -31,6 +31,26 @@ describe('json-formatter', function () {
     scope.emptyArray = [];
     scope.array = ['one', 'two', 'three'];
     scope.simpleObject = {me: 1};
+    scope.longerObject = {
+      numbers: [
+        1,
+        2,
+        3
+      ],
+      boolean: true,
+      'null': null,
+      number: 123,
+      anObject: {
+        a: 'b',
+        c: 'd',
+        e: 'f\"'
+      },
+      string: 'Hello World',
+      url: 'https://github.com/mohsen1/json-formatter',
+      date: 'Sun Aug 03 2014 20:46:55 GMT-0700 (PDT)',
+      func: function add(a,b){return a + b; }
+    };
+    scope.mixArray = [1, '2', {number: 3}];
 
     $compile(elm)(scope);
     scope.$digest();
@@ -38,7 +58,14 @@ describe('json-formatter', function () {
     return elm;
   }
 
-  beforeEach(module('ngSanitize', 'jsonFormatter'));
+  beforeEach(function () {
+    fakeModule = angular
+      .module('test.jsonFormatter', ['jsonFormatter', 'ngSanitize'])
+      .config(['thumbnailProvider', function (thumbnailProvider) {
+        thumbnailProviderConfig = thumbnailProvider;
+      }]);
+    module('test.jsonFormatter', 'jsonFormatter', 'ngSanitize');
+  });
   beforeEach(inject(function(_$rootScope_, _$compile_) {
     $rootScope = _$rootScope_;
     scope = $rootScope.$new();
@@ -73,7 +100,7 @@ describe('json-formatter', function () {
         expect(element.text()).toContain('function');
         expect(element.text()).toContain('add');
         expect(element.text()).toContain('(a, b)');
-        expect(element.text().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
+        expect(element.text().trim().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
       });
     });
     
@@ -83,7 +110,7 @@ describe('json-formatter', function () {
         expect(element.text()).toContain('function');
         expect(element.text()).toContain('getAdd');
         expect(element.text()).toContain('(service, a)');
-        expect(element.text().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
+        expect(element.text().trim().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
       });
     });
 
@@ -195,6 +222,41 @@ describe('json-formatter', function () {
         element.find('.constructor-name').click();
         expect(element.find('.toggler').hasClass('open')).toBe(true);
       });
+    });
+
+    describe('thumbnail', function() {
+
+      it('default is disabled', function () {
+        element = createDirective('mixArray');
+        expect(element.find('.thumbnail-text').length).toBe(0);
+      });
+
+      describe('set enable', function () {
+        beforeEach(function () {
+          thumbnailProviderConfig.enabled = true;
+        });
+
+        it('should render "simple object"', function () {
+          element = createDirective('simpleObject', 0);
+          expect(element.find('.thumbnail-text').text().trim()).toBe('{me:1}');
+        });
+
+        it('should render "longer object"', function () {
+          element = createDirective('longerObject', 0);
+          expect(element.find('.thumbnail-text').text().trim()).toBe('{numbers:Array[3], boolean:true, null:null, number:123, anObject:Object…}');
+        });
+
+        it('should render "array"', function () {
+          element = createDirective('array', 0);
+          expect(element.find('.thumbnail-text').text().trim()).toBe('["one", "two", "three"]');
+        });
+
+        it('should render "mixArray"', function () {
+          element = createDirective('mixArray', 0);
+          expect(element.find('.thumbnail-text').text().trim()).toBe('[1, "2", Object]');
+        });
+      });
+
     });
   });
 

@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.3.0 - 2015-07-09T13:22:11.371Z
+ * Version: 0.3.1 - 2015-08-13T05:50:21.229Z
  * License: MIT
  */
 
@@ -9,7 +9,44 @@
 'use strict';
 
 angular.module('jsonFormatter', ['RecursionHelper'])
-.directive('jsonFormatter', ['RecursionHelper', function (RecursionHelper) {
+.provider('thumbnail', function thumbnailProvider() {
+
+  var enabled = false;
+  var arrayCount = 100;
+  var fieldCount = 5;
+  return {
+
+    get enabled() {
+      return enabled;
+    },
+    set enabled(value) {
+      enabled = !!value;
+    },
+
+    get arrayCount() {
+      return arrayCount;
+    },
+    set arrayCount(value) {
+      arrayCount = parseInt(value, 10);
+    },
+
+    get fieldCount() {
+      return fieldCount;
+    },
+    set fieldCount(value) {
+      fieldCount = parseInt(value, 10);
+    },
+
+    $get: function () {
+      return {
+        enabled: enabled,
+        arrayCount: arrayCount,
+        fieldCount: fieldCount
+      };
+    }
+  };
+})
+.directive('jsonFormatter', ['RecursionHelper', 'thumbnail', function (RecursionHelper, thumbnail) {
   function escapeString(str) {
     return str.replace('"', '\"');
   }
@@ -39,13 +76,44 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     return typeof object;
   }
 
+  function getValuePreview (object, value) {
+    var type = getType(object);
+
+    if (type === 'null' || type === 'undefined') { return type; }
+
+    if (type === 'string') {
+      value = '"' + escapeString(value) + '"';
+    }
+    if (type === 'function'){
+
+      // Remove content of the function
+      return object.toString()
+          .replace(/[\r\n]/g, '')
+          .replace(/\{.*\}/, '') + '{ ... }';
+
+    }
+    return value;
+  }
+
+  function getPreview(object) {
+    var value = '';
+    if (angular.isObject(object)) {
+      value = getObjectName(object);
+      if (angular.isArray(object))
+        value += '[' + object.length + ']';
+    } else {
+      value = getValuePreview(object, object);
+    }
+    return value;
+  }
+
   function link(scope, element, attributes) {
     scope.isArray = function () {
-      return Array.isArray(scope.json);
+      return angular.isArray(scope.json);
     };
 
     scope.isObject = function() {
-      return scope.json && typeof scope.json === 'object';
+      return angular.isObject(scope.json);
     };
 
     scope.getKeys = function (){
@@ -100,25 +168,43 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
     scope.parseValue = function (value){
-      scope.type = getType(scope.json);
-      if (scope.type === 'null') {
-        return 'null';
-      }
-      if (scope.type === 'undefined') {
-        return 'undefined';
-      }
-      if (scope.type === 'string') {
-        value = '"' + escapeString(value) + '"';
-      }
-      if (scope.type === 'function'){
+      return getValuePreview(scope.json, value);
+    };
 
-        // Remove content of the function
-        return scope.json.toString()
-          .replace(/[\r\n]/g, '')
-          .replace(/\{.*\}/, '') + '{ ... }';
+    scope.showThumbnail = function () {
+      return !!thumbnail.enabled && scope.isObject() && !scope.isOpen;
+    };
 
+    scope.getThumbnail = function () {
+      if (scope.isArray()) {
+        //
+        // if array length is 256, greater then 100
+        // show "Array[256]"
+        if (scope.json.length > thumbnail.arrayCount) {
+          return 'Array[' + scope.json.length + ']';
+        } else {
+          return '[' + scope.json.map(getPreview).join(', ') + ']';
+        }
+      } else {
+
+        var keys = scope.getKeys();
+        //
+        // the first five keys (like Chrome Developer Tool)
+        var narrowKeys = keys.slice(0, thumbnail.fieldCount);
+
+
+        //
+        // json value schematic information
+        var kvs = narrowKeys
+          .map(function (key) { return key + ':' + getPreview(scope.json[key]); });
+
+        //
+        // if keys count greater then 5
+        // then show ellipsis
+        var ellipsis = keys.length >= 5 ? "…" : '';
+
+        return '{' + kvs.join(', ') + ellipsis + '}';
       }
-      return value;
     };
   }
 
@@ -186,4 +272,4 @@ angular.module('RecursionHelper', []).factory('RecursionHelper', ['$compile', fu
   };
 }]);
 
-angular.module("jsonFormatter").run(["$templateCache", function($templateCache) {$templateCache.put("json-formatter.html","<div ng-init=\"isOpen = open && open > 0\" class=\"json-formatter-row\"><a ng-click=\"toggleOpen()\"><span class=\"toggler {{isOpen ? \'open\' : \'\'}}\" ng-if=\"isObject()\"></span> <span class=\"key\" ng-if=\"hasKey\">{{key}}:</span> <span class=\"value\"><span ng-if=\"isObject()\"><span class=\"constructor-name\">{{getConstructorName(json)}}</span> <span ng-if=\"isArray()\"><span class=\"bracket\">[</span><span class=\"number\">{{json.length}}</span><span class=\"bracket\">]</span></span></span> <span ng-if=\"!isObject()\" ng-click=\"openLink(isUrl)\" class=\"{{type}}\" ng-class=\"{date: isDate, url: isUrl}\">{{parseValue(json)}}</span></span></a><div class=\"children\" ng-if=\"getKeys().length && isOpen\"><json-formatter ng-repeat=\"key in getKeys() track by $index\" json=\"json[key]\" key=\"key\" open=\"childrenOpen()\"></json-formatter></div><div class=\"children empty object\" ng-if=\"isEmptyObject()\"></div><div class=\"children empty array\" ng-if=\"getKeys() && !getKeys().length && isOpen && isArray()\"></div></div>");}]);
+angular.module("jsonFormatter").run(["$templateCache", function($templateCache) {$templateCache.put("json-formatter.html","<div ng-init=\"isOpen = open && open > 0\" class=\"json-formatter-row\"><a ng-click=\"toggleOpen()\"><span class=\"toggler {{isOpen ? \'open\' : \'\'}}\" ng-if=\"isObject()\"></span> <span class=\"key\" ng-if=\"hasKey\">{{key}}:</span> <span class=\"value\"><span ng-if=\"isObject()\"><span class=\"constructor-name\">{{getConstructorName(json)}}</span> <span ng-if=\"isArray()\"><span class=\"bracket\">[</span><span class=\"number\">{{json.length}}</span><span class=\"bracket\">]</span></span></span> <span ng-if=\"!isObject()\" ng-click=\"openLink(isUrl)\" class=\"{{type}}\" ng-class=\"{date: isDate, url: isUrl}\">{{parseValue(json)}}</span></span> <span ng-if=\"showThumbnail()\" class=\"thumbnail-text\">{{getThumbnail()}}</span></a><div class=\"children\" ng-if=\"getKeys().length && isOpen\"><json-formatter ng-repeat=\"key in getKeys() track by $index\" json=\"json[key]\" key=\"key\" open=\"childrenOpen()\"></json-formatter></div><div class=\"children empty object\" ng-if=\"isEmptyObject()\"></div><div class=\"children empty array\" ng-if=\"getKeys() && !getKeys().length && isOpen && isArray()\"></div></div>");}]);

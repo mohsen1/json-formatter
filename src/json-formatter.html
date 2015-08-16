@@ -9,6 +9,9 @@
       </span>
       <span ng-if="!isObject()" ng-click="openLink(isUrl)" class="{{type}}" ng-class="{date: isDate, url: isUrl}">{{parseValue(json)}}</span>
     </span>
+    <span ng-if="showThumbnail()" class="thumbnail-text">
+      {{getThumbnail()}}
+    </span>
   </a>
   <div class="children" ng-if="getKeys().length && isOpen">
     <json-formatter ng-repeat="key in getKeys() track by $index" json="json[key]" key="key" open="childrenOpen()"></json-formatter>
