@@ -35,6 +35,17 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
   ```
 * `open` attribute accepts a number which indicates how many levels rendered JSON should be opened
 
+#### Configuration
+
+You can use `JSONFormatterConfig` provider to configure JOSN Formatter.
+
+Available configurations
+
+* #####`hoverPreview`
+ ** `enabled`: enable preview on hover
+ ** `arrayCount`: number of array items to show in preview
+ ** `fieldCount`: number of object properties to show for object preview
+
 ## Demo
 See [Examples here](http://azimi.me/json-formatter/demo/demo.html)
 

@@ -1,6 +1,9 @@
 var app = angular.module('demo', ['ngSanitize', 'jsonFormatter']);
 
-app.controller('MainCtrl', function ($scope) {
+app.controller('MainCtrl', function ($scope, JSONFormatterConfig) {
+
+  JSONFormatterConfig.hoverPreview.enabled = true;
+
   $scope.undef = undefined;
   $scope.textarea = '{}';
   $scope.complex = {
