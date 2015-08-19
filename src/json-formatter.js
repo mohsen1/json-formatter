@@ -1,44 +1,51 @@
 'use strict';
 
 angular.module('jsonFormatter', ['RecursionHelper'])
-.provider('thumbnail', function thumbnailProvider() {
 
-  var enabled = false;
-  var arrayCount = 100;
-  var fieldCount = 5;
+.provider('JSONFormatterConfig', function JSONFormatterConfigProvider() {
+
+  // Default values for hover preview config
+  var hoverPreviewConfig = {
+    enabled: false,
+    arrayCount: 100,
+    fieldCount: 5
+  };
+
   return {
+    hoverPreview: {
+      get enabled() {
+        return hoverPreviewConfig.enabled;
+      },
+      set enabled(value) {
+        hoverPreviewConfig.enabled = !!value;
+      },
 
-    get enabled() {
-      return enabled;
-    },
-    set enabled(value) {
-      enabled = !!value;
-    },
+      get arrayCount() {
+        return hoverPreviewConfig.arrayCount;
+      },
+      set arrayCount(value) {
+        hoverPreviewConfig.arrayCount = parseInt(value, 10);
+      },
 
-    get arrayCount() {
-      return arrayCount;
-    },
-    set arrayCount(value) {
-      arrayCount = parseInt(value, 10);
-    },
+      get fieldCount() {
+        return hoverPreviewConfig.fieldCount;
+      },
+      set fieldCount(value) {
+        hoverPreviewConfig.fieldCount = parseInt(value, 10);
+      },
 
-    get fieldCount() {
-      return fieldCount;
-    },
-    set fieldCount(value) {
-      fieldCount = parseInt(value, 10);
-    },
-
-    $get: function () {
-      return {
-        enabled: enabled,
-        arrayCount: arrayCount,
-        fieldCount: fieldCount
-      };
+      $get: function () {
+        return {
+          enabled: hoverPreviewConfig.enabled,
+          arrayCount: hoverPreviewConfig.arrayCount,
+          fieldCount: hoverPreviewConfig.fieldCount
+        };
+      }
     }
   };
 })
-.directive('jsonFormatter', ['RecursionHelper', 'thumbnail', function (RecursionHelper, thumbnail) {
+
+.directive('jsonFormatter', ['RecursionHelper', 'JSONFormatterConfig', function jsonFormatterDirective(RecursionHelper, JSONFormatterConfig) {
   function escapeString(str) {
     return str.replace('"', '\"');
   }
@@ -81,7 +88,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
       // Remove content of the function
       return object.toString()
           .replace(/[\r\n]/g, '')
-          .replace(/\{.*\}/, '') + '{ ... }';
+          .replace(/\{.*\}/, '') + '{…}';
 
     }
     return value;
@@ -99,7 +106,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     return value;
   }
 
-  function link(scope, element, attributes) {
+  function link(scope) {
     scope.isArray = function () {
       return angular.isArray(scope.json);
     };
@@ -111,8 +118,8 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     scope.getKeys = function (){
       if (scope.isObject()) {
         return Object.keys(scope.json).map(function(key) {
-            if (key === '') { return '""'; }
-            return key;
+          if (key === '') { return '""'; }
+          return key;
         });
       }
     };
@@ -164,15 +171,14 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
     scope.showThumbnail = function () {
-      return !!thumbnail.enabled && scope.isObject() && !scope.isOpen;
+      return !!JSONFormatterConfig.hoverPreview.enabled && scope.isObject() && !scope.isOpen;
     };
 
     scope.getThumbnail = function () {
       if (scope.isArray()) {
-        //
-        // if array length is 256, greater then 100
-        // show "Array[256]"
-        if (scope.json.length > thumbnail.arrayCount) {
+
+        // if array length is greater then 100 it shows "Array[101]"
+        if (scope.json.length > JSONFormatterConfig.hoverPreview.arrayCount) {
           return 'Array[' + scope.json.length + ']';
         } else {
           return '[' + scope.json.map(getPreview).join(', ') + ']';
@@ -180,20 +186,16 @@ angular.module('jsonFormatter', ['RecursionHelper'])
       } else {
 
         var keys = scope.getKeys();
-        //
+
         // the first five keys (like Chrome Developer Tool)
-        var narrowKeys = keys.slice(0, thumbnail.fieldCount);
+        var narrowKeys = keys.slice(0, JSONFormatterConfig.hoverPreview.fieldCount);
 
-
-        //
         // json value schematic information
         var kvs = narrowKeys
           .map(function (key) { return key + ':' + getPreview(scope.json[key]); });
 
-        //
-        // if keys count greater then 5
-        // then show ellipsis
-        var ellipsis = keys.length >= 5 ? "…" : '';
+        // if keys count greater then 5 then show ellipsis
+        var ellipsis = keys.length >= 5 ? '…' : '';
 
         return '{' + kvs.join(', ') + ellipsis + '}';
       }
