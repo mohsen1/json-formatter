@@ -2,7 +2,19 @@ var app = angular.module('demo', ['ngSanitize', 'jsonFormatter']);
 
 app.controller('MainCtrl', function ($scope, JSONFormatterConfig) {
 
-  JSONFormatterConfig.hoverPreview.enabled = true;
+  $scope.hoverPreviewEnabled = JSONFormatterConfig.hoverPreviewEnabled;
+  $scope.hoverPreviewArrayCount = JSONFormatterConfig.hoverPreviewArrayCount;
+  $scope.hoverPreviewFieldCount = JSONFormatterConfig.hoverPreviewFieldCount;
+
+  $scope.$watch('hoverPreviewEnabled', function(newValue){
+    JSONFormatterConfig.hoverPreviewEnabled = newValue;
+  });
+  $scope.$watch('hoverPreviewArrayCount', function(newValue){
+    JSONFormatterConfig.hoverPreviewArrayCount = newValue;
+  });
+  $scope.$watch('hoverPreviewFieldCount', function(newValue){
+    JSONFormatterConfig.hoverPreviewFieldCount = newValue;
+  });
 
   $scope.undef = undefined;
   $scope.textarea = '{}';

@@ -38,30 +38,57 @@
       <p>Add <code>jsonFormatter</code> to your app dependencies</p>
       <p>
         <pre>
-          angular
-          .module('jsonFormatterApp', [
-          'ngCookies',
-          ...
-          'jsonFormatter'
-          ])
+angular.module('myApp', ['jsonFormatter'])
         </pre>
       </p>
       <p>Use <code>&lt;json-formatter&gt;</code> directive</p>
       <p>
         <pre>
-          &lt;json-formatter open="1" json="{my: 'json'}"&gt;&lt;/json-formatter&gt;
+&lt;json-formatter open="1" json="{my: 'json'}"&gt;&lt;/json-formatter&gt;
         </pre>
       </p>
       <p><code>open</code> attribute accepts a number that indicated how many levels JSON should be open</p>
 
+      <h4>Configuration</h4>
+      <p>You can set following configurations via <code>JSONFormatterConfig</code> provider.</p>
+      <p>Changing these configurations will impact all demos</p>
+      <ul>
+        <li>
+          <label>
+            <code>hoverPreviewEnabled</code>
+            <input type="checkbox" ng-model="hoverPreviewEnabled">
+          </label>
+        </li>
+        <li>
+          <label>
+            <code>hoverPreviewArrayCount</code>
+            <input type="number" ng-model="hoverPreviewArrayCount" ng-disabled="!hoverPreviewEnabled">
+          </label>
+        </li>
+        <li>
+          <label>
+            <code>hoverPreviewFieldCount</code>
+            <input type="number" ng-model="hoverPreviewFieldCount" ng-disabled="!hoverPreviewEnabled">
+          </label>
+        </li>
+      </ul>
+
       <h4>Demo</h4>
       <div class="tests">
-        <div class="result dark">
-          <json-formatter json="complex" open="1" class="json-formatter-dark"></json-formatter>
+        <div class="result">
+          <json-formatter json="complex" open="1"></json-formatter>
         </div>
       </div>
 
-      <h4 id="examples">Examples</h4>
+      <h4>Live JSON</h4>
+      <div class="result">
+          <textarea ng-model="textarea" class="col-xs-6"></textarea>
+          <div class="col-xs-6">
+              <json-formatter json="textareaJson" open="1"></json-formatter>
+          </div>
+      </div>
+
+      <h4 id="examples">Other Examples</h4>
       <div class="tests">
         <div class="group">
 
@@ -213,14 +240,6 @@
     </label>
     <div class="result">
       <json-formatter json="c ? alternate1 : alternate2" open="1"></json-formatter>
-    </div>
-
-    <h4>Live <code>json</code></h4>
-    <div class="result">
-        <textarea ng-model="textarea" class="col-xs-6"></textarea>
-        <div class="col-xs-6">
-            <json-formatter json="textareaJson" open="1"></json-formatter>
-        </div>
     </div>
   </div>
 </div>

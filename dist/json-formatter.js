@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.3.1 - 2015-08-21T21:58:16.122Z
+ * Version: 0.3.1 - 2015-08-21T22:33:28.671Z
  * License: MIT
  */
 
@@ -13,42 +13,38 @@ angular.module('jsonFormatter', ['RecursionHelper'])
 .provider('JSONFormatterConfig', function JSONFormatterConfigProvider() {
 
   // Default values for hover preview config
-  var hoverPreviewConfig = {
-    enabled: false,
-    arrayCount: 100,
-    fieldCount: 5
-  };
+  var hoverPreviewEnabled = false;
+  var hoverPreviewArrayCount = 100;
+  var hoverPreviewFieldCount = 5;
 
   return {
-    hoverPreview: {
-      get enabled() {
-        return hoverPreviewConfig.enabled;
-      },
-      set enabled(value) {
-        hoverPreviewConfig.enabled = !!value;
-      },
+    get hoverPreviewEnabled() {
+      return hoverPreviewEnabled;
+    },
+    set hoverPreviewEnabled(value) {
+     hoverPreviewEnabled = !!value;
+    },
 
-      get arrayCount() {
-        return hoverPreviewConfig.arrayCount;
-      },
-      set arrayCount(value) {
-        hoverPreviewConfig.arrayCount = parseInt(value, 10);
-      },
+    get hoverPreviewArrayCount() {
+      return hoverPreviewArrayCount;
+    },
+    set hoverPreviewArrayCount(value) {
+      hoverPreviewArrayCount = parseInt(value, 10);
+    },
 
-      get fieldCount() {
-        return hoverPreviewConfig.fieldCount;
-      },
-      set fieldCount(value) {
-        hoverPreviewConfig.fieldCount = parseInt(value, 10);
-      },
+    get hoverPreviewFieldCount() {
+      return hoverPreviewFieldCount;
+    },
+    set hoverPreviewFieldCount(value) {
+      hoverPreviewFieldCount = parseInt(value, 10);
+    },
 
-      $get: function () {
-        return {
-          enabled: hoverPreviewConfig.enabled,
-          arrayCount: hoverPreviewConfig.arrayCount,
-          fieldCount: hoverPreviewConfig.fieldCount
-        };
-      }
+    $get: function () {
+      return {
+        hoverPreviewEnabled: hoverPreviewEnabled,
+        hoverPreviewArrayCount: hoverPreviewArrayCount,
+        hoverPreviewFieldCount: hoverPreviewFieldCount
+      };
     }
   };
 })
@@ -179,14 +175,14 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
     scope.showThumbnail = function () {
-      return !!JSONFormatterConfig.hoverPreview.enabled && scope.isObject() && !scope.isOpen;
+      return !!JSONFormatterConfig.hoverPreviewEnabled && scope.isObject() && !scope.isOpen;
     };
 
     scope.getThumbnail = function () {
       if (scope.isArray()) {
 
         // if array length is greater then 100 it shows "Array[101]"
-        if (scope.json.length > JSONFormatterConfig.hoverPreview.arrayCount) {
+        if (scope.json.length > JSONFormatterConfig.hoverPreviewArrayCount) {
           return 'Array[' + scope.json.length + ']';
         } else {
           return '[' + scope.json.map(getPreview).join(', ') + ']';
@@ -196,7 +192,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
         var keys = scope.getKeys();
 
         // the first five keys (like Chrome Developer Tool)
-        var narrowKeys = keys.slice(0, JSONFormatterConfig.hoverPreview.fieldCount);
+        var narrowKeys = keys.slice(0, JSONFormatterConfig.hoverPreviewFieldCount);
 
         // json value schematic information
         var kvs = narrowKeys
@@ -228,6 +224,11 @@ angular.module('jsonFormatter', ['RecursionHelper'])
   };
 }]);
 
+// Export to CommonJS style imports. Exporting this string makes this valid:
+// angular.module('myApp', [require('jsonformatter')]);
+if (typeof module === 'object') {
+  module.exports = 'jsonFormatter';
+}
 'use strict';
 
 // from http://stackoverflow.com/a/18609594

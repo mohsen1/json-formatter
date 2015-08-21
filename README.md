@@ -41,10 +41,20 @@ You can use `JSONFormatterConfig` provider to configure JOSN Formatter.
 
 Available configurations
 
-* #####`hoverPreview`
- ** `enabled`: enable preview on hover
- ** `arrayCount`: number of array items to show in preview
- ** `fieldCount`: number of object properties to show for object preview
+##### Hover Preview
+* `hoverPreviewEnabled`: enable preview on hover
+* `hoverPreviewArrayCount`: number of array items to show in preview Any array larger than this number will be shown as `Array[XXX]` where `XXX` is length of the array.
+* `hoverPreviewFieldCount`: number of object properties to show for object preview. Any object with more properties that thin number will be truncated.
+
+Example using configuration
+
+```js
+app.controller('MainCtrl', function ($scope, JSONFormatterConfig) {
+
+  // Enable the hover preview feature
+  JSONFormatterConfig.hoverPreviewEnabled = true;
+});
+```
 
 ## Demo
 See [Examples here](http://azimi.me/json-formatter/demo/demo.html)

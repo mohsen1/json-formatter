@@ -18,6 +18,7 @@
   "indent": 2,
   "globals": {
     "angular": true,
-    "window": true
+    "window": true,
+    "module": true
   }
 }
