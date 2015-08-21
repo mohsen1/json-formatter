@@ -1,7 +1,7 @@
 var fs            = require('fs');
 var connect       = require('gulp-connect');
 var gulp          = require('gulp');
-var karma         = require('karma').server;
+var KarmaServer   = require('karma').Server;
 var concat        = require('gulp-concat');
 var jshint        = require('gulp-jshint');
 var header        = require('gulp-header');
@@ -126,16 +126,16 @@ gulp.task('jshint-test', function(){
 })
 
 gulp.task('karma', function (done) {
-  karma.start({
+  new KarmaServer({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
-  }, done);
+  }, done).start();
 });
 
 gulp.task('karma-serve', function(done){
-  karma.start({
+  new KarmaServer({
     configFile: __dirname + '/karma.conf.js'
-  }, done);
+  }, done).start();
 });
 
 function handleError(err) {

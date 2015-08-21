@@ -49,10 +49,10 @@ Available configurations
 Example using configuration
 
 ```js
-app.controller('MainCtrl', function ($scope, JSONFormatterConfig) {
+app.config(function (JSONFormatterConfigProvider) {
 
   // Enable the hover preview feature
-  JSONFormatterConfig.hoverPreviewEnabled = true;
+  JSONFormatterConfigProvider.hoverPreviewEnabled = true;
 });
 ```
 

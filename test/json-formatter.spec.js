@@ -1,7 +1,7 @@
 'use strict';
 
 describe('json-formatter', function () {
-  var scope, $compile, $rootScope, element, fakeModule, thumbnailProviderConfig;
+  var scope, $compile, $rootScope, element, fakeModule, JSONFormatterConfig;
 
   function createDirective(key, open) {
     open = open === undefined ? 0 : open;
@@ -61,8 +61,8 @@ describe('json-formatter', function () {
   beforeEach(function () {
     fakeModule = angular
       .module('test.jsonFormatter', ['jsonFormatter', 'ngSanitize'])
-      .config(['thumbnailProvider', function (thumbnailProvider) {
-        thumbnailProviderConfig = thumbnailProvider;
+      .config(['JSONFormatterConfigProvider', function (_JSONFormatterConfig_) {
+        JSONFormatterConfig = _JSONFormatterConfig_;
       }]);
     module('test.jsonFormatter', 'jsonFormatter', 'ngSanitize');
   });
@@ -100,17 +100,17 @@ describe('json-formatter', function () {
         expect(element.text()).toContain('function');
         expect(element.text()).toContain('add');
         expect(element.text()).toContain('(a, b)');
-        expect(element.text().trim().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
+        expect(element.text().trim().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{…}');
       });
     });
-    
+
     describe('promiseFunction', function(){
       it('should render the function', function () {
         element = createDirective('promiseFunction');
         expect(element.text()).toContain('function');
         expect(element.text()).toContain('getAdd');
         expect(element.text()).toContain('(service, a)');
-        expect(element.text().trim().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{ ... }');
+        expect(element.text().trim().match(/function\s[^\(]*\([^\)]*\)\s*(.*)/)[1]).toBe('{…}');
       });
     });
 
@@ -224,7 +224,7 @@ describe('json-formatter', function () {
       });
     });
 
-    describe('thumbnail', function() {
+    describe('hover preview', function() {
 
       it('default is disabled', function () {
         element = createDirective('mixArray');
@@ -233,7 +233,7 @@ describe('json-formatter', function () {
 
       describe('set enable', function () {
         beforeEach(function () {
-          thumbnailProviderConfig.enabled = true;
+          JSONFormatterConfig.hoverPreviewEnabled = true;
         });
 
         it('should render "simple object"', function () {
