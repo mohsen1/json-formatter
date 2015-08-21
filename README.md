@@ -19,14 +19,9 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
   npm install jsonformatter --save
   ```
 * Add `jsonFormatter` to your app dependencies
-  ```js
-  angular
-  .module('jsonFormatterApp', [
-    'ngCookies',
-    ...
-    'jsonFormatter'
-  ])
 
+  ```js
+  angular.module('jsonFormatterApp', ['jsonFormatter'])
   ```
 * Use `<json-formatter>` directive
 
