@@ -4,11 +4,9 @@
   <meta charset="utf-8">
   <title>AngularJS directive demo</title>
 
-  <!-- TODO: Include Angular from Bower components -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
-  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
-
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="../dist/json-formatter.min.css"></div>
   <link rel="stylesheet" href="demo.css">
 </head>
@@ -37,15 +35,11 @@
       <p><code>bower install json-formatter --save</code></p>
       <p>Add <code>jsonFormatter</code> to your app dependencies</p>
       <p>
-        <pre>
-angular.module('myApp', ['jsonFormatter'])
-        </pre>
+        <pre>angular.module('myApp', ['jsonFormatter'])</pre>
       </p>
       <p>Use <code>&lt;json-formatter&gt;</code> directive</p>
       <p>
-        <pre>
-&lt;json-formatter open="1" json="{my: 'json'}"&gt;&lt;/json-formatter&gt;
-        </pre>
+        <pre>&lt;json-formatter open="1" json="{my: 'json'}"&gt;&lt;/json-formatter&gt;</pre>
       </p>
       <p><code>open</code> attribute accepts a number that indicated how many levels JSON should be open</p>
 
