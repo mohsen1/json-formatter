@@ -1,6 +1,6 @@
 var app = angular.module('demo', ['ngSanitize', 'jsonFormatter']);
 
-app.controller('MainCtrl', function ($scope, JSONFormatterConfig) {
+app.controller('MainCtrl', function ($scope, $http, JSONFormatterConfig) {
 
   $scope.hoverPreviewEnabled = JSONFormatterConfig.hoverPreviewEnabled;
   $scope.hoverPreviewArrayCount = JSONFormatterConfig.hoverPreviewArrayCount;
@@ -55,6 +55,12 @@ app.controller('MainCtrl', function ($scope, JSONFormatterConfig) {
   $scope.alternate1 = {o: 1, d: 'Alternate 1', b: []};
   $scope.alternate2 = [1, 'Alternate 2', {b: {}}];
 
+  $scope.fetchGiantJSON = function() {
+    $scope.giant = 'Fetching...';
+    $http.get('giant.json').then(function (json) {
+      $scope.giant = json;
+    });
+  }
 
   function Person(name){ this.name = name; }
   $scope.person = new Person('Mohsen');

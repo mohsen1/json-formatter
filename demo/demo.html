@@ -235,6 +235,15 @@
     <div class="result">
       <json-formatter json="c ? alternate1 : alternate2" open="1"></json-formatter>
     </div>
+
+    <h4>Giant JSON</h4>
+    <p>(for performance testing)</p>
+    <label>
+      <button ng-click="fetchGiantJSON()">Fetch</button>
+    </label>
+    <div class="result" ng-init="giantOpen = 1;">
+      <json-formatter json="giant" open="100"></json-formatter>
+    </div>
   </div>
 </div>
 </div>

@@ -117,8 +117,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('open', function(){
-  gulp.src('./demo/demo.html')
-  .pipe(open('', {url: 'http://localhost:8080/demo/demo.html'}));
+  return open('http://localhost:8080/demo/demo.html');
 });
 
 gulp.task('jshint-test', function(){
