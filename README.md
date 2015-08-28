@@ -6,6 +6,8 @@ JSON Formatter is an AngularJS directive for rendering JSON objects in HTML with
 
 [![Screebshot](./screenshot.png)](http://azimi.me/json-formatter/demo/demo.html)
 
+#### [Now also available in pure JavaScript with zero dependency!](https://github.com/mohsen1/json-formatter-js)
+
 ## Usage
 
 * Install via Bower or npm
