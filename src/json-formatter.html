@@ -1,7 +1,7 @@
 <div ng-init="isOpen = open && open > 0" class="json-formatter-row">
   <a ng-click="toggleOpen()">
     <span class="toggler {{isOpen ? 'open' : ''}}" ng-if="isObject()"></span>
-    <span class="key" ng-if="hasKey">{{key}}:</span>
+    <span class="key" ng-if="hasKey"><span class="key-text">{{key}}</span><span class="colon">:</span></span>
     <span class="value">
       <span ng-if="isObject()">
         <span class="constructor-name">{{getConstructorName(json)}}</span>
