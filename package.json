@@ -1,6 +1,6 @@
 {
   "name": "jsonformatter",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Angular Publishable Directive Boilerplate",
   "main": "dist/json-formatter.js",
   "repository": "git@github.com:mohsen1/json-formatter.git",
