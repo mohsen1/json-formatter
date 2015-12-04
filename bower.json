@@ -23,10 +23,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.4",
-    "angular-sanitize": "~1.4.4",
-    "jquery": "~2.1.1"
-  }
+    "angular": "~1.4.4"
+  },
   "devDependencies": {
     "angular": "~1.4.4",
     "angular-mocks": "~1.4.4",
