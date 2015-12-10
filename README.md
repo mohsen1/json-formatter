@@ -57,6 +57,7 @@ app.config(function (JSONFormatterConfigProvider) {
 See [Examples here](http://azimi.me/json-formatter/demo/demo.html)
 
 
+## Known Bugs
 ##### `hashKey`
 
 If you are iterating in an array of objects using `ng-repeat`, make sure you are using `track by $index` to avoid adding extra `$$hashKey` to your objects.
