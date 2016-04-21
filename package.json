@@ -15,7 +15,7 @@
   "author": {
     "name": "Mohsen Azimi"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "chai": "^3.2.0",
     "del": "^1.2.0",
