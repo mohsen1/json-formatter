@@ -57,6 +57,12 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     if (typeof object === 'object' && !object.constructor) {
         return 'Object';
     }
+
+    //ES6 default gives name to constructor 
+    if (object.__proto__ !== undefined && object.__proto__.constructor !== undefined && object.__proto__.constructor.name !== undefined) {
+      return object.__proto__.constructor.name;
+    } 
+       
     var funcNameRegex = /function (.{1,})\(/;
     var results = (funcNameRegex).exec((object).constructor.toString());
     if (results && results.length > 1) {
