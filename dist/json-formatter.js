@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.6.0 - 2016-04-29T03:24:40.672Z
+ * Version: 0.6.0 - 2016-08-27T12:58:03.306Z
  * License: Apache-2.0
  */
 
@@ -65,6 +65,12 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     if (typeof object === 'object' && !object.constructor) {
         return 'Object';
     }
+
+    //ES6 default gives name to constructor 
+    if (object.__proto__ !== undefined && object.__proto__.constructor !== undefined && object.__proto__.constructor.name !== undefined) {
+      return object.__proto__.constructor.name;
+    } 
+       
     var funcNameRegex = /function (.{1,})\(/;
     var results = (funcNameRegex).exec((object).constructor.toString());
     if (results && results.length > 1) {
